@@ -2,18 +2,15 @@
   "extends": "../tsconfig.json",
 
   "compilerOptions": {
-
-    "strictPropertyInitialization": false,
     
-    "declaration": true,
     "declarationDir": "./dist/",
     "outDir": "./dist/",
     "baseUrl": ".",
     "paths": {
       "*": [ "*" ],
       "@/*" : [ "./src/*"],
-      "@Modules/*" : [ 
-        "D:/Files/Projects/Modules/*"
+      "@Modules/*" : [
+        "../../Modules/*",
       ],
     },
     //"composite": true
@@ -23,7 +20,6 @@
     "./src/", "./test/"
   ],
   "exclude": [
-    "dist",
     "node_modules",
     "**/__ignored__",
     "**/*.spec.ts"

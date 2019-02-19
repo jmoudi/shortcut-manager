@@ -1,0 +1,1 @@
+export const KEYBINDINGS = "src/../keybindings/";

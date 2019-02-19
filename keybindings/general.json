@@ -1,0 +1,7 @@
+{
+    "type": "china",
+    "type2": "keybindings",
+    "keys": [
+        { "key": "!c", "cmd": "Actions.paste", "args": [ "tttest" ] }
+    ]
+}

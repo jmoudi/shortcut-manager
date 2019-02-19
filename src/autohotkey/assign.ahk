@@ -52,7 +52,7 @@ parseArgs(inputStr){
 			key := KeyArray[1]
 			command := KeyArray[2]
 			value := KeyArray[3]
-			Loop % KeyArray.MaxIndex()
+			;Loop % KeyArray.MaxIndex()
 			assigned_keys[key] := new Hotkey(key, command, value)
 		}
 	}
