@@ -20,8 +20,8 @@ async function assign(keymap: KeyMap, hotkeys){
     return keymap;
 };
 async function main(){
-    const keymap = new KeyMap();
-    const autoHotkey = new AutoHotkey();
+    
+    
     
     const china2 = [
         { key: "!c", value: "罗马", command: "enter" },
@@ -30,13 +30,16 @@ async function main(){
 
     const srcPath = resolve(KEYBINDINGS, "china.json");
     const content = await readFile(srcPath, "utf8");
-    log("srcPath", srcPath, content);
+    //log("srcPath", srcPath, content);
     const china = json5.parse(content);
-    assign(keymap, china);
-    log("keymap", keymap, china);
+    const keymap = new KeyMap();
+    assign(keymap, china.keys);
+    log("keymap", keymap);
     const str = convertToAhk(keymap);
     log("Stringified:", str);
+    
+    const autoHotkey = new AutoHotkey();
     const exec = autoHotkey.run(str);
-    //log("exec", exec);
+    log("exec", exec);
 }
 main();

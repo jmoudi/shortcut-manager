@@ -1,0 +1,11 @@
+[
+    { "key": "alt+f", "command": "workbench.action.debug.start", "when": "editorFocus" },
+    { "key": "alt+c", "command": "workbench.action.debug.restart", "when": "editorFocus" },
+    { "key": "alt+2", "command": "workbench.action.closeActiveEditor", "when": "editorFocus" }, 
+    { "key": "alt+3", "command": "javascript.reloadProject", "when": "editorTextFocus" },
+    { "key": "alt+4", "command": "workbench.action.reloadWindow", "when": "editorTextFocus" },
+    { "key": "alt+3", "command": "workbench.action.nextEditor" },
+    { "key": "alt+q", "command": "workbench.action.previousEditor" },
+    { "key": "alt+e", "command": "workbench.action.nextEditor" },
+    { "key": "ctrl+shift+pageup", "command": "-workbench.action.moveEditorLeftInGroup" }
+]

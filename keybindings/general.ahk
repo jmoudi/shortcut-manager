@@ -8,25 +8,24 @@ SetScrollLockState, Off
 Menu, Tray, Icon, %A_ScriptDir%\lib\icons\CHN.ico
 #Include, %A_ScriptDir%\src\handlers.ahk
 
-검은 스타킹
-
+ 
 #If (!WinActive("ahk_exe Code.exe"))
-	!c::paste("타이즈") ;"鱼嘴 坡跟 凉鞋")
-	!d::enter("니삭스")
+	!c::paste("сарафан") ;"鱼嘴 坡跟 凉鞋")
+	!d::enter("туфли")
 	!+d::paste("니삭스")
 	!s::enter("罗马鞋 OR 罗马凉鞋 OR 罗马女鞋 OR 罗马高跟鞋 OR 罗马粗跟鞋 OR 罗马中跟鞋")
 	!+s::paste("罗马鞋 OR 罗马凉鞋 OR 罗马女鞋 OR 罗马高跟鞋 OR 罗马粗跟鞋 OR 罗马中跟鞋")
 	!^s::paste("罗马鞋 OR 罗马凉鞋 OR 罗马女鞋 OR 罗马高跟鞋")
 	; *************** FIND ***************
-	!x::find("타이")
-	!+x::find("ボブカット")
-	!^x::find("鱼嘴")
+	!x::find("сарафан")
+	!+x::find("туфли")
+	!^x::find("гольфы")
 	!<^>x::find("旗袍")
 	!y::find("니삭")
 	!+y::find("單鞋")
 	!^y::find("高跟")
 	; *************** MIDDLE ***************
-	!f::enter("타이즈")
+	!f::enter("гольфы")
 	!+f::paste("罗马")
 	!^f::enter("罗马鞋")
 	!g::enter("타이츠")

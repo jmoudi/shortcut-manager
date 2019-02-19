@@ -20,25 +20,17 @@ show(obj){
 	}
 	MsgBox % "Stringified Object:`n" . str
 }
-
-parseArgs2(paramStr){
-	config := {}
-	rrr := ""
-	for index, inputStr in StrSplit(paramStr, ";"){
-		if (StrLen(inputStr) > 0){
-			;MsgBox %queryStr%
-			for i, param in StrSplit(inputStr, ","){
-				rrr .= param[1]
-				;init := { key: param[1], command: param[2], value: param[3] }
-			}
-			MsgBox KK %rrr%
-			config[init["key"]] := init
-		}
-	}
-
-	return config
+showOne(){
+	str := "KEY" . key . "COMMAND" . command . "VALUE" . value "`n"
+	MsgBox %str%
 }
-
+showAll(){
+	str := ""
+	for key, val in assigned_keys {
+		str .= "KEY:( " . val.key . " )    CMD:(" . val.command . ")    VALUE:(" . val.value . ")    ISOBJECT:(" . IsObject(val) . ") `n"
+	}
+	MsgBox % "Stringified Object:`n" . str
+}
 
 
 parseArgs(inputStr){
@@ -60,17 +52,7 @@ parseArgs(inputStr){
 	return config
 }
 
-showOne(){
-	str := "KEY" . key . "COMMAND" . command . "VALUE" . value "`n"
-	MsgBox %str%
-}
-showAll(){
-	str := ""
-	for key, val in assigned_keys {
-		str .= "KEY:( " . val.key . " )    CMD:(" . val.command . ")    VALUE:(" . val.value . ")    ISOBJECT:(" . IsObject(val) . ") `n"
-	}
-	MsgBox % "Stringified Object:`n" . str
-}
+
 
 
 
