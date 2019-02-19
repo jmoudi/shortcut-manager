@@ -1,0 +1,44 @@
+{
+	"name": "hotkey-manager",
+	"version": "0.0.2",
+	"main": "./src/index.ts",
+	"nodemonConfig": {
+		"watch": [
+			"./src/",
+			"./test/*.ts"
+		],
+		"ext": "ts",
+		"ignore": [
+			"dist",
+			".cache",
+			".git",
+			"src/**/*.spec.ts",
+			"**/node_modules/",
+			"migrations",
+			"**/.sqlite"
+		],
+		"exec": "ts-node -r tsconfig-paths/register"
+	},
+	"scripts": {
+		"test:nodemon": "nodemon -- ./test/main.test.ts",
+		"start": "nodemon -- ./src/main.ts",
+		"build": "tsc --build --listEmittedFiles --traceResolution",
+		"lint": "tslint -c D:/Files/Projects/config/tslint/tslint.json -p ."
+	},
+	"dependencies": {
+		"@types/node": "",
+		"@types/execa": "",
+		"execa": ""
+	},
+	"devDependencies": {
+		"@types/jest": "",
+		"ts-node": "",
+		"ts-node-dev": "",
+		"tsconfig-paths": "",
+		"tslib": "",
+		"tslint": "",
+		"typescript": ""
+	},
+	"private": false,
+	"author": "Jonas Moudi"
+}
