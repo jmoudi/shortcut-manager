@@ -1,0 +1,18 @@
+﻿; NO  DOUBLE QUOTES! 
+
+q.r1 := "^{PgUp}", q.r2 := "{Delete}"
+w.r1 := "{Home}" 
+e.r1 := "^{PgDn}"
+r.r1 := "!{Left}"
+t.r1 := "!{Right}"
+1.r1 := "{F2}"
+2.r1 := "^{w}", 2.r2 := "sds"
+3.r1 := "{F5}",
+4.p1 := "site:", 4.p2 := "inurl:"
+5.p1 := "intitle:", 5.p2 := "inanchor:"
+6.i1 := "site:"
+;-.p1 := "sss"
+
+
+
+ 

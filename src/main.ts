@@ -12,6 +12,21 @@ export function convertToAhk(keymap: KeyMap){
     return str;
 }
 
+class App {
+
+    start(){
+        /*
+        const childProcess = exec(`AutoHotkey.exe main.ahk "${}"`, { 
+            encoding: 'utf8'
+        }, (err) => {
+            if (err) throw err;
+            process.exit(1);
+            console.log(`Exec`, "childProcess");
+        });
+        childProcess*/
+    }
+}
+
 async function assign(keymap: KeyMap, hotkeys){
     //const keymap = new KeyMap();
     for (const hotkey of hotkeys){

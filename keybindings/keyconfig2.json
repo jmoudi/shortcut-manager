@@ -1,0 +1,65 @@
+{
+    "conf": [
+    { 
+        "key":"s", 
+        "assigned":[
+        { 
+            "modifiers": [ "!" ],
+            "command": {
+                "action": "enter",
+                "value": [
+                    "china_dress"
+                ]
+            } 
+        },
+        { 
+            "modifiers": [ "!", "+" ],
+            "command": {
+                "action": "paste",
+                "value": [
+                    "china_dress"
+                ]
+            } 
+        }
+    ]
+},
+
+
+
+
+    ],
+{ "key": "!s" , "command": "enter", 
+    "input": "罗马鞋 OR 罗马凉鞋 OR 罗马女鞋 OR 罗马高跟鞋 OR 罗马粗跟鞋 OR 罗马中跟鞋" , "when":"" },
+{ "key": "!+s" , "command": "paste", 
+    "input": "罗马鞋 OR 罗马凉鞋 OR 罗马女鞋 OR 罗马高跟鞋 OR 罗马粗跟鞋 OR 罗马中跟鞋" , "when":"" },
+{ "key": "!^s" , "command": "paste", 
+    "input": "罗马鞋 OR 罗马凉鞋 OR 罗马女鞋 OR 罗马高跟鞋" , "when":"" },
+{ "key": "!x" , "command": "find", "input":
+    "罗马" , "when":"" },
+{ "key": "!+x" , "command": "find", "input":
+    "单鞋" , "when":"" },
+{ "key": "!^x" , "command": "find", "input":
+    "鱼嘴" , "when":"" },
+{ "key": "!<^>x" , "command": "find", "input":
+    "旗袍" , "when":"" },
+{ "key": "!y" , "command": "find", "input": 
+    "羅馬" , "when":"" },
+{ "key": "!+y" , "command": "find", "input": 
+    "單鞋" , "when":"" },
+{ "key": "!^y" , "command": "find", "input": 
+    "高跟" , "when":"" },
+{ "key": "!f" , "command": "enter", "input": 
+    "罗马" , "when":"" },
+{ "key": "!+f" , "command": "paste", "input":
+    "罗马" , "when":"" },
+{ "key": "!^f" , "command": "enter", "input": 
+    "罗马鞋" , "when":"" },
+{ "key": "!g" , "command": "enter", "input": 
+    "罗马 凉鞋" , "when":"" },
+{ "key": "!+g" , "command": "paste", "input": 
+    "罗马 凉鞋" , "when":"" },
+{ "key": "!^g" , "command": "paste", "input": 
+    "罗马 鞋" , "when":"" },
+{ "key": "!h" , "command": "enter", "input": 
+    "羅馬" , "when":"" }
+]
