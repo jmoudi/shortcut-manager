@@ -2,17 +2,23 @@
 ##
 ### WEBEXT
 
+ts-node --pretty -r /home/jm/Projects/Tools/node-debug/src/loadpaths.ts -- ./src/watcher.ts
 ts-node --pretty -r ./src/loadpaths.ts -- ./src/watcher.ts
 ts-node --eval ./src/loadpaths.ts -- ./src/watcher.ts
+nodemon --config /home/jm/Projects/Config/node-debug/nodemon.base.json -- ./src/watcher.ts
+ts-node-dev --inspect --transpileOnly --respawn --prefer-ts --require /home/jm/Projects/Tools/node-debug/src/loadpaths.ts  ./src/watcher.ts
+ 
+find . -ipath './config/xb-*.*'
+
+sudo chmod rwx -R ./src/sh/ 
+
+sudo chmod 'a+rwx' -R ./src/sh/ 
+ls -lha ./src/sh
 
 
-ts-node-dev --inspect -- ./src/watcher.ts
-ts-node -r ./loadpaths.js --transpile-only  -- ./src/watcher.ts
-
-ts-node -r tsconfig-paths/register --transpile-only  -- ./src/watcher.ts
-
-
---transpile-only
+xbindkeys -v -fg /home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm
+xbindkeys -v -fg '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
+./src/sh/xbindkeys-ipc.sh reload '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
 
 xorg xm
 gcc sendkeys-master/xsendkey.c

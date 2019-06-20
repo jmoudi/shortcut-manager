@@ -5,6 +5,7 @@
 	"scripts": {
 		"test": "jest --watch",
 		"run": "nodemon -- ./src/main.ts",
+		"updperm":"",
 		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",
 		"watch": "ts-node -r tsconfig-paths/register -- ./src/watcher.ts",
 		"start": "ts-node -r tsconfig-paths/register -- ./src/main.ts",

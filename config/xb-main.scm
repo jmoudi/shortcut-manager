@@ -1,5 +1,6 @@
 
 ;; Example:
+  
 
 (xbindkey-function '(control a)
 		   (lambda ()
@@ -38,8 +39,8 @@
 ;;   Shift + b:1 then Shift + b:3  start gv
 ;;   Shift + b:3 then Shift + b:1  start xpdf
 
-(define-event-key '(shift "g")
-)
+;;(define-event-key '(shift "g")
+;;)
 
 (define-chord-keys '(shift "r") '(shift "t")
   "bash /home/jm/Projects/Apps/BashScripts/src/manage_system/test.sh" "pass" "pass" "pass")
