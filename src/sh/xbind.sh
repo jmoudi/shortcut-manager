@@ -1,57 +1,21 @@
-
-# make xbindkeys reload config
-killall -s1 xbindkeys
-
-Start xbindkeys:
-
-# start xbindkeys daemon
-xbindkeys -f ~/.xbindkeysrc
-
-
-killall -s1 xbindkeys
-xbindkeys -f ~/.xbindkeysrc
-xbindkeys --show
-
-
-
-xmodmap ~/.Xmodmap
-
-# reload xbindkeys
-# "xmodmap ~/.Xmodmap && killall xcape && xcape -e 'Hyper_L=Return' && killall xbindkeys && xbindkeys"
-"killall xbindkeys ; xbindkeys"
-Control+Shift+z
-
+ 
 function xx(){
-    xbindkeys -f $HOME/.xbindkeysrc;
-    xbindkeys -p;
-    xbindkeys -s
+    killall xbindkeys;
+    xbindkeys -v -f /home/jm/Projects/Apps/HotkeyManager/xbindkeys.conf;
+    xbindkeys -s;
 }; xx
 
 function xx(){
     killall xbindkeys;
-    xbindkeys
-    xbindkeys -f $HOME/.xbindkeysrc;
-    xbindkeys -s
+    xbindkeys -v -fg ./config/xb-main.scm;
+    xbindkeys -s;
 }; xx
 
+xbindkeys -mk,
+A list of keys is in /usr/include/X11/keysym.h and in /usr/include/X11/keysymdef.h.  The XK_ is not needed.
 
-function xx(){
-    killall xbindkeys;
-    xbindkeys;
-    xbindkeys -f $HOME/.xbindkeysrc;
-    xbindkeys -s
-}; xx
+xbindkeys --defaults-guile > ./config/xbg.conf
 
-function xx(){
-    killall xbindkeys;
-    xbindkeys -f $HOME/.xbindkeysrc.scm;
-    xbindkeys -s
-}; xx
-
-
-xbindkeys --defaults > $HOME/.xbindkeysrc
-[jm@jm-pc Public]$ xbindkeys --help
-xbindkeys 1.8.6 by Philippe Brochard
 usage: xbindkeys [options]
   where options are:
   -V, --version           Print version and exit
@@ -80,3 +44,5 @@ A keycode can be identified with xbindkeys -k
 
 "firefox"
     control+shift + q
+
+     Running xbindkeys goes into daemon mode, so pass -n to test it. If everything works properly, put the following into your .profile :

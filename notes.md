@@ -2,6 +2,8 @@
 ##
 ### WEBEXT
 
+ts-node -r tsconfig-paths/register --transpile-only  -- ./src/watcher.ts
+--transpile-only
 
 xorg xm
 gcc sendkeys-master/xsendkey.c

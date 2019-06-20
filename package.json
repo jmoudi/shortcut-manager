@@ -3,8 +3,9 @@
 	"version": "0.0.2",
 	"main": "./src/index.ts",
 	"scripts": {
-		"test":"jest --watch",
+		"test": "jest --watch",
 		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",
+		"watch": "ts-node -r tsconfig-paths/register -- ./src/watcher.ts",
 		"start": "ts-node -r tsconfig-paths/register -- ./src/main.ts",
 		"build": "tsc --build --listEmittedFiles --traceResolution",
 		"lint": "tslint -c D:/Files/Projects/config/tslint/tslint.json -p ."
@@ -16,13 +17,12 @@
 	},
 	"devDependencies": {
 		"@types/jest": "",
-		"ts-node": "",
+		"ts-jest": "",
 		"ts-node-dev": "",
 		"tsconfig-paths": "",
 		"tslib": "",
-		"tslint": "",
 		"typescript": ""
 	},
-	"private": false,
+	"private": true,
 	"author": "Jonas Moudi"
 }
