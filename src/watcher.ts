@@ -1,3 +1,5 @@
+/* import {Replacer} from '@Modules/string';
+console.log(Replacer) */
 import {Watcher} from '@Modules/fs';
 import {log} from '@Modules/logger';
 import {default as execa} from 'execa';
@@ -13,6 +15,7 @@ export function reloadXbindkeys(path: string){
     `, [path]) //`./config/xb-main.scm`
 }
 export function startWatch(){
+    log(`startWatch`, Watcher);
     const watcher = new Watcher({
         awaitWriteFinish: true
     });

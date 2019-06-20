@@ -4,6 +4,7 @@
 	"main": "./src/index.ts",
 	"scripts": {
 		"test": "jest --watch",
+		"run": "nodemon -- ./src/main.ts",
 		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",
 		"watch": "ts-node -r tsconfig-paths/register -- ./src/watcher.ts",
 		"start": "ts-node -r tsconfig-paths/register -- ./src/main.ts",
@@ -16,12 +17,13 @@
 		"execa": ""
 	},
 	"devDependencies": {
-		"@types/jest": "",
-		"ts-jest": "",
 		"ts-node-dev": "",
-		"tsconfig-paths": "",
+		"@types/jest": "",
+		"jest": "",
+		"ts-jest": "",
+		"typescript": "",
 		"tslib": "",
-		"typescript": ""
+		"tsconfig-paths": ""
 	},
 	"private": true,
 	"author": "Jonas Moudi"

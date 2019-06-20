@@ -1,0 +1,6 @@
+95494fc7a02209518e070c5470727df1
+'use strict'
+
+module.exports = {
+  copySync: require('./copy-sync')
+}

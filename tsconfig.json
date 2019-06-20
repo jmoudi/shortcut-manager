@@ -2,23 +2,18 @@
   "extends": "/home/jm/Projects/Config/tsc/tsconfig.app",
 
   "compilerOptions": {
+    //"noEmit": true,
     "noEmit": true,
- 
     "baseUrl": ".",
- 
     "paths": {
       "*": [ "*" ],
       "@/*" : [ "./src/*"],
-      "@Modules/*" : [ 
-        "../../../Modules/*",
-        "/home/jm/Projects/Modules/*"],
+      "@Modules/*" : [ "/home/jm/Projects/Modules/*"],
     },
    // "composite": true,
-    
-    
   },
  
   "include": [
-    "./src/**/*", "./test/"
+    "./src/**/*", "./test/" 
   ]
 }

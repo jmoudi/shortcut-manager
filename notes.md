@@ -2,7 +2,16 @@
 ##
 ### WEBEXT
 
+ts-node --pretty -r ./src/loadpaths.ts -- ./src/watcher.ts
+ts-node --eval ./src/loadpaths.ts -- ./src/watcher.ts
+
+
+ts-node-dev --inspect -- ./src/watcher.ts
+ts-node -r ./loadpaths.js --transpile-only  -- ./src/watcher.ts
+
 ts-node -r tsconfig-paths/register --transpile-only  -- ./src/watcher.ts
+
+
 --transpile-only
 
 xorg xm

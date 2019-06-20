@@ -1,0 +1,9 @@
+fc21427e4fa618989ce915bc03c9c7b1
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = require("tslib");
+tslib_1.__exportStar(require("./read"), exports);
+tslib_1.__exportStar(require("./rimraf"), exports);
+tslib_1.__exportStar(require("./watch"), exports);
+tslib_1.__exportStar(require("./write"), exports);
+//# sourceMappingURL=index.js.map

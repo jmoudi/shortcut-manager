@@ -1,0 +1,6 @@
+e32b2424bf3f56c47ac6a2a08478dce9
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};

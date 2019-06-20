@@ -1,0 +1,4 @@
+0ad45c9bd2ff257a55522ab06e3b2428
+'use strict';
+
+module.exports = require('./lib/picomatch');
