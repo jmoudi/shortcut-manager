@@ -1,6 +1,5 @@
 import { Registry } from '@Modules/core/src/classes';
 import { Hotkey } from '@/types';
-import { log } from '@/util';
 
 export class KeyMap extends Map<string, Hotkey> {
 

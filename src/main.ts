@@ -1,60 +1,45 @@
-import {AutoHotkey,KeyMap} from '@/core';
-import { log } from '@/util';
-import { KEYBINDINGS } from '@/constants';
-
+import {KeyMap} from '@/core/keymap';
+import {log} from '@Modules/logger';
 import { Hotkey } from '@/types';
-import { json5, readFile } from '@Modules/filesystem';
-import { resolve,join } from 'path';
+import {default as execa} from 'execa';
+import {readConfig} from '@Modules/filesystem/src/core/readUtils';
 
+function stringify(keymap, cb){
+    const output: string[] = [];
+    for (const [k,v] of keymap.entries()){
+        output.push(cb(v));
+    }
+    return output.join(";");
+}
 export function convertToAhk(keymap: KeyMap){
 
     const str = Array.from(keymap.values()).map((hotkey: Hotkey) => `${hotkey.key},${hotkey.command},${hotkey.value}`).join(";");
     return str;
 }
-
-class App {
-
-    start(){
-        /*
-        const childProcess = exec(`AutoHotkey.exe main.ahk "${}"`, { 
-            encoding: 'utf8'
-        }, (err) => {
-            if (err) throw err;
-            process.exit(1);
-            console.log(`Exec`, "childProcess");
-        });
-        childProcess*/
-    }
-}
-
+ 
 async function assign(keymap: KeyMap, hotkeys){
     //const keymap = new KeyMap();
     for (const hotkey of hotkeys){
         keymap.set(hotkey.key, hotkey);
     }
     return keymap;
-};
-async function main(){
+}; 
+async function load(file){
     
-    
-    
-    const china2 = [
-        { key: "!c", value: "罗马", command: "enter" },
-        { key: "!x", value: "罗马", command: "find" },
-    ];
-
-    const srcPath = resolve(KEYBINDINGS, "china.json");
-    const content = await readFile(srcPath, "utf8");
-    //log("srcPath", srcPath, content);
-    const china = json5.parse(content);
+    const content = await readConfig<{keys: Hotkey[]}>(file);
+    log("content", content);
     const keymap = new KeyMap();
-    assign(keymap, china.keys);
+    assign(keymap, content.keys);
     log("keymap", keymap);
     const str = convertToAhk(keymap);
     log("Stringified:", str);
     
-    const autoHotkey = new AutoHotkey();
-    const exec = autoHotkey.run(str);
-    log("exec", exec);
+    const exec = await execa(`wine`, [
+        `AutoHotkeyU64.exe`,
+        `src/ahk/main.ahk`,
+        str
+    ]);
+    log("exec", exec, str);
 }
-main();
+load("./keybindings/china.json");
+//load("korea/shoes.json");

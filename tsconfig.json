@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.json",
+  "extends": "../tsconfig.base.json",
 
   "compilerOptions": {
     
@@ -9,17 +9,16 @@
     "paths": {
       "*": [ "*" ],
       "@/*" : [ "./src/*"],
-      "@Modules/*" : [
-        "../../Modules/*",
-      ],
+      "@Modules/*" : [ "../../Modules/*", ],
     },
     //"composite": true
   },
 
   "include": [
-    "./src/", "./test/"
+    "./src/**/*",
   ],
   "exclude": [
+    "dist",
     "node_modules",
     "**/__ignored__",
     "**/*.spec.ts"

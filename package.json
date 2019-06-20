@@ -2,26 +2,10 @@
 	"name": "hotkey-manager",
 	"version": "0.0.2",
 	"main": "./src/index.ts",
-	"nodemonConfig": {
-		"watch": [
-			"./src/",
-			"./test/*.ts"
-		],
-		"ext": "ts",
-		"ignore": [
-			"dist",
-			".cache",
-			".git",
-			"src/**/*.spec.ts",
-			"**/node_modules/",
-			"migrations",
-			"**/.sqlite"
-		],
-		"exec": "ts-node -r tsconfig-paths/register"
-	},
 	"scripts": {
-		"test:nodemon": "nodemon -- ./test/main.test.ts",
-		"start": "nodemon -- ./src/main.ts",
+		"test":"jest --watch",
+		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",
+		"start": "ts-node -r tsconfig-paths/register -- ./src/main.ts",
 		"build": "tsc --build --listEmittedFiles --traceResolution",
 		"lint": "tslint -c D:/Files/Projects/config/tslint/tslint.json -p ."
 	},

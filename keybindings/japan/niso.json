@@ -5,8 +5,12 @@
     !+c::paste("キャミ")
 	!d::enter(" ニーソ OR ニーソックス OR ニーハイソックス ")
 	!s::enter("キャミソール")
-	!+s::paste(" ニーハイソックス ")
-	!^s::paste("インナー キャミ")
+    !+s::paste(" ニーハイソックス ")
+    
+    !^s::paste("インナー キャミ")
+    !s::enter("{space}ニーソ OR ニーソックス{space}")
+	!^s::paste("{space}ニーソ OR ニーソックス{space}")
+	!+s::paste("{space}ニーソ OR ニーソックス OR ニーハイソックス{space}")
     "keys": [
         { "key": "!c", "command": "enter", "value": ["罗马"] },
         { "key": "!d", "command": "enter", "value": ["罗马 鞋"] },

@@ -10,7 +10,9 @@
 	!+d::paste("ロング キャミ")
 	!s::enter("インナーキャミソール")
 	!+s::paste("キャミ チュニック ")
-	!^s::paste("インナー キャミ")
+    !^s::paste("インナー キャミ")
+    !g::enter("キャミドレス")
+	!+g::paste("キャミワンピース")
     "keys": [
         { "key": "!c", "command": "enter", "value": ["罗马"] },
         { "key": "!d", "command": "enter", "value": ["罗马 鞋"] },

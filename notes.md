@@ -3,6 +3,30 @@
 ### WEBEXT
 
 
+xorg xm
+gcc sendkeys-master/xsendkey.c
+
+windowId=`wmctrl -l | awk "firefox"
+
+faaaaaaaaaaaaaaaafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafaaaafaaaaaaaaaaaaaaaaaaaaaaaafaaaafaaaafaaaaaaaaaaaafaaaaaaaaaaaa
+
+sudo python customizable_hotkey.py
+wmctrl -l | awk '{print $0}'
+wmctrl -l | awk '{print $0 $1 $2}'
+wmctrl -l | awk 'firefox'
+wmctrl -l | awk {^.*firefox.*$}
+ls -l /usr/bin | awk '{print $0}'
+
+sudo python key.py 
+python scripting.py
+wine AutoHotkeyU64.exe test/test.ahk
+
+Otherwise, bind wmctrl or xdotool to a hotkey via kcmshell5 khotkeys. Those commands can activate a window found by class or title patterns.
+
+
+
+
+sudo python key.py 
 
 pref("intl.ime.hack.on_any_apps.fire_key_events_for_composition", true);
 #else // #ifdef EARLY_BETA_OR_EARLIER
