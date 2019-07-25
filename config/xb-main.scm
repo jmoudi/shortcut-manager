@@ -1,18 +1,32 @@
 
 ;; Example:
-  
-
-(xbindkey-function '(control a)
-		   (lambda ()
-		     (display "Hello from Scheme!")
-		     (newline)))
-
 (define (define-event-key key1) 
 	"Define event keys"
 	(let ((k1 key1))
 		(lambda ()
 		     (display k1)
 		     (newline))))
+
+(nodemon -- './src/bindkeys.sh'
+ "socat - tcp6-connect:localhost:2222")
+
+
+(xbindkey-function '(alt z)
+		   (lambda ()
+		     (define-event-key (alt))
+		     (newline)))
+
+(xbindkey-function '(alt s)
+		   (lambda ()
+		     (peek '')
+		     (newline)))
+
+(xbindkey-function '(control a)
+		   (lambda ()
+		     (display "Hello from Scheme!")
+		     (newline)))
+
+
 
 (define (define-chord-keys key1 key2 cmd-k1 cmd-k2 cmd-k1-k2 cmd-k2-k1)
     "Define chording keys"

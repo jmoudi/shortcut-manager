@@ -6,12 +6,8 @@ import {Stats,existsSync as exists} from 'fs';
 import {log} from '@Modules/logger';
 import {default as execa} from 'execa';
 import {resolve} from 'path';
+import{reloadXbindkeys} from './xbindkeysApi';
 
-export function reloadXbindkeys(path: string){
-    const abs = resolve(path);
-    log(`abs`, abs);
-    return execa(`./src/sh/xbindkeys-ipc.sh`, [`reload`, `'${abs}'`]) //`./config/xb-main.scm`
-}
 async function handleChange(p: string, stats?: Stats){
     log(`change`, p);
     const res = await reloadXbindkeys(p);

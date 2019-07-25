@@ -2,6 +2,109 @@
 ##
 ### WEBEXT
 
+nodemon -- './src/bindkeys.sh'
+
+
+
+xbindkeys -v --geometry --file-guile ./config/conf1.scm
+xbindkeys -v -fg '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
+./src/sh/xbindkeys-ipc.sh reload '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
+
+
+nodemon --exec "bash -v" ./app.py
+
+xdotool key 'ctrl+v'
+
+nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash' -- './src/sh/bindkeys.sh'
+
+nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash' -- './src/bindkeys.sh'
+nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash' -- './src/bindkeys.sh'
+
+
+    xbindkeys -v -fg /home/jm/Projects/Apps/HotkeyManager/config/conf1.scm 
+        xbindkeys -v -fg ./config/conf1.scm 
+
+    #='./config/conf1.scm'
+
+
+
+
+nodemon --ext 'scm' -V --exec 'guile -l' -- 'main.scm'
+
+nodemon --watch '**/*.scm' --ext 'scm' --exec 'guile -l' -- 'main.scm'
+
+nodemon --watch './src/sh/*.sh' --ext 'sh' --exec 'bash' -- './src/sh/bindkeys.sh'
+
+nodemon --watch './src/sh/*.sh ./config/*.*' --ext 'sh' --exec 'bash' -- './src/sh/bindkeys.sh'
+
+nodemon --watch './src/sh/*.sh ./config/*.*' --exec 'bash' -- './src/sh/bindkeys.sh'
+
+
+bash ./src/sh/test.sh
+
+nodemon --config './nodemon.config.json' -- './src/sh/bindkeys.sh'
+nodemon --signal SIGHUP server.js
+
+./lib/sendkeys/xsendkey --help
+
+function aa(){
+echo "aaaaa" | xclip;
+./lib/sendkeys/xsendkey 'Control+v'
+}; aa
+
+
+function bb(){
+echo "aaaaa" | xclip -sel 'clip';
+sleep 0.5;
+./lib/sendkeys/xsendkey 'Control+v'
+}; aa
+
+function cc(){
+
+./lib/sendkeys/xsendkey 'Control+v'
+sleep 0.5;
+}; cc
+
+git clone https://github.com/kyoto/sendkeys
+cd sendkeys
+make
+#Move the compiled xsendkey binary somewhere on your ```$PATH```
+
+
+Your application can handle the signal as follows.
+
+process.once("SIGHUP", function () {
+  reloadSomeConfiguration();
+})
+if (cluster.isMaster) {
+  process.on("SIGHUP", function () {
+    for (const worker of Object.values(cluster.workers)) {
+      worker.process.kill("SIGTERM");
+    }
+  });
+} else {
+  process.on("SIGHUP", function() {})
+}
+
+
+
+If you want growl like notifications when nodemon restarts or to trigger an action when an event happens, then you can either require nodemon or add event actions to your nodemon.json file.
+
+For example, to trigger a notification on a Mac when nodemon restarts, nodemon.json looks like this:
+
+{
+  "events": {
+    "restart": "osascript -e 'display notification \"app restarted\" with title \"nodemon\"'"
+  }
+}
+
+
+
+
+
+
+
+
 ts-node --pretty -r /home/jm/Projects/Tools/node-debug/src/loadpaths.ts -- ./src/watcher.ts
 ts-node --pretty -r ./src/loadpaths.ts -- ./src/watcher.ts
 ts-node --eval ./src/loadpaths.ts -- ./src/watcher.ts
@@ -15,17 +118,23 @@ sudo chmod rwx -R ./src/sh/
 sudo chmod 'a+rwx' -R ./src/sh/ 
 ls -lha ./src/sh
 
-
-xbindkeys -v -fg /home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm
-xbindkeys -v -fg '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
-./src/sh/xbindkeys-ipc.sh reload '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
-
 xorg xm
 gcc sendkeys-master/xsendkey.c
 
 windowId=`wmctrl -l | awk "firefox"
 
 faaaaaaaaaaaaaaaafaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaafaaaafaaaaaaaaaaaaaaaaaaaaaaaafaaaafaaaafaaaaaaaaaaaafaaaaaaaaaaaa
+
+
+xbindkeys_show
+Utility for showing the actual keybinding with xbindkeys
+xmodmap(1x)
+Utility for modifying keymap & button mappings in X.
+xev(1x)
+Print contents of X events.
+/usr/include/X11/keysymdef.h
+X11 KeySym definitions.
+
 
 sudo python customizable_hotkey.py
 wmctrl -l | awk '{print $0}'

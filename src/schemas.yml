@@ -1,0 +1,11 @@
+default-daemon:
+    description: listens for all
+    keys:
+        chord: shift+alt+o+e 
+        ü
+        ä
+        ö Ö
+
+
+inserter-daemon:
+    description: listens for all

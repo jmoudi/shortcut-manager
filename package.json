@@ -4,13 +4,13 @@
 	"main": "./src/index.ts",
 	"scripts": {
 		"test": "jest --watch",
+		"r1": "nodemon --config './nodemon.config.json' -- './src/sh/bindkeys.sh'",
 		"run": "nodemon -- ./src/main.ts",
 		"updperm":"",
 		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",
-		"watch": "ts-node -r tsconfig-paths/register -- ./src/watcher.ts",
+		"watch": "ts-node-dev --transpileOnly --respawn --prefer-ts --require /home/jm/Projects/Tools/node-debug/src/loadpaths.ts  ./src/watcher.ts",
 		"start": "ts-node -r tsconfig-paths/register -- ./src/main.ts",
-		"build": "tsc --build --listEmittedFiles --traceResolution",
-		"lint": "tslint -c D:/Files/Projects/config/tslint/tslint.json -p ."
+		"build": "tsc --build --listEmittedFiles --traceResolution"
 	},
 	"dependencies": {
 		"@types/node": "",
