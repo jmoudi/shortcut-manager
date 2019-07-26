@@ -16,7 +16,7 @@ interface ExecTemplateInit {
 }
 const createSchemeFunction = ({}) => {
 
-}
+}/* 
 interface Functaa {
     
         //name: 'xbindkey-function2',
@@ -25,17 +25,7 @@ interface Functaa {
     
 }
 const aa: Functaa = (hotkey, func) => 2;
-const num = aa('fds', 'df')
-
-interface Functaa {
-    
-    //name: 'xbindkey-function2',
-    (hotkey: string, func: string): void;
-    (hotkey: string, func: number): number;
-
-}
-const aa: Functaa = (hotkey, func) => 2;
-const num = aa('fds', 'df')
+const num = aa('fds', 'df') */
 
 
 export namespace XbindKeys {

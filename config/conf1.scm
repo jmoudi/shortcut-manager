@@ -124,19 +124,17 @@
                              (if k2 (run-command cmd-k2)))
                          (set! k1 #f) (set! k2 #f)))))
 
-
-;; Example:
-;;   Shift + b:1                   start an xterm
-;;   Shift + b:3                   start an rxvt
-;;   Shift + b:1 then Shift + b:3  start gv
-;;   Shift + b:3 then Shift + b:1  start xpdf
  
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; End of xbindkeys guile configuration ;;
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (xbindkey-function '(shift a)
 		   (lambda ()
 		     (display "Hello from Scheme!")
 		     (newline)))
+
+(xbindkey '(shift a) "xsel -v --clipboard --output --selectionTimeout 3000")
+(xbindkey '(shift z) "xbindkeys_show")
+(xbindkey '(shift x) "xsel --clipboard --output --selectionTimeout 3000")
+(xbindkey '(shift c) "xclip -out -selection 'clipboard'")
+(xbindkey '(shift v) "xclip -verbose -out -loops 3 -selection 'clipboard'")
+(xbindkey '(shift b) "xclip -out -loops 3 -selection 'clipboard'")
+(xbindkey '(shift n) "xbindkeys --show")

@@ -7,15 +7,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <locale.h>
-#include <X11/X.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <X11/Xlib.h>
-
-#include <X11/Xlib.h>           // `apt-get install libx11-dev`
+#include <X11/Xatom.h>
+#include <X11/X.h>         // `apt-get install libx11-dev`
 #include <X11/Xmu/WinUtil.h>    // `apt-get install libxmu-dev`
 
-
 #include <X11/XKBlib.h>
-#include <X11/Xatom.h>
 #include <X11/Xresource.h>
 #include <X11/Xutil.h>
 #include <X11/extensions/XTest.h>

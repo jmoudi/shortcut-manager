@@ -1,5 +1,8 @@
 
 
+xsel --clipboard --output --selectionTimeout 3000
+
+
 
 xev
 

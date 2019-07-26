@@ -5,6 +5,13 @@
 nodemon -- './src/bindkeys.sh'
 
 
+xbindkeys -v -fg './config/conf1.scm'
+
+
+xbindkeys -v --geometry --file-guile='./config/conf1.scm'
+
+xbindkeys -v --geometry --file-guile="/config/conf1.scm"
+
 
 xbindkeys -v --geometry --file-guile ./config/conf1.scm
 xbindkeys -v -fg '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
@@ -15,11 +22,15 @@ nodemon --exec "bash -v" ./app.py
 
 xdotool key 'ctrl+v'
 
-nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash' -- './src/sh/bindkeys.sh'
+chmod -v -R 'u=rwx,g=rx' ./bin 
+ ./bin/paste.sh
 
-nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash' -- './src/bindkeys.sh'
-nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash' -- './src/bindkeys.sh'
+#!/bin/sh
+#!/usr/bin/env
 
+ 
+nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash -v' -- './src/bindkeys.sh'
+ 
 
     xbindkeys -v -fg /home/jm/Projects/Apps/HotkeyManager/config/conf1.scm 
         xbindkeys -v -fg ./config/conf1.scm 
