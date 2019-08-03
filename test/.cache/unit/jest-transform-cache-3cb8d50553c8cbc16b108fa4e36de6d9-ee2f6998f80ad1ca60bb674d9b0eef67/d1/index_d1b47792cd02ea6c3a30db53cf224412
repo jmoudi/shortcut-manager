@@ -1,7 +1,0 @@
-562ca7a595a7b1b7270f140c32689ac2
-'use strict'
-
-const u = require('universalify').fromCallback
-module.exports = {
-  copy: u(require('./copy'))
-}

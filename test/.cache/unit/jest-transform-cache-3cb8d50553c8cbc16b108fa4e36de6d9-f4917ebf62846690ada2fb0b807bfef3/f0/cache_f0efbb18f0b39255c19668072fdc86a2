@@ -1,2 +1,0 @@
-ec7d49512be288627dce520e664fc921
-module.exports = new (require('fragment-cache'))();

@@ -1,8 +1,0 @@
-2851342c8556c48bf284bb0de5750190
-"use strict";
-
-function atob(str) {
-  return Buffer.from(str, 'base64').toString('binary');
-}
-
-module.exports = atob.atob = atob;

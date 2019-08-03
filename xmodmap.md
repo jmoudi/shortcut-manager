@@ -1,4 +1,9 @@
 
+https://renenyffenegger.ch/notes/Linux/X/XKB/database#keycodes
+
+
+
+
 
 xsel --clipboard --output --selectionTimeout 3000
 
