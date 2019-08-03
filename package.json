@@ -4,7 +4,7 @@
 	"main": "./src/index.ts",
 	"scripts": {
 		"test": "jest --watch",
-		"r1": "nodemon --config './nodemon.config.json' -- './src/sh/bindkeys.sh'",
+		"r1": "nodemon --config './nodemon.config.json' -- './src/bindkeys.sh'",
 		"run": "nodemon -- ./src/main.ts",
 		"updperm":"",
 		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",

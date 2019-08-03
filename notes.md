@@ -42,6 +42,24 @@ nodemon --watch './config/**/*' --ext 'sh,scm' --exec 'bash -v' -- './src/bindke
 
 nodemon --ext 'scm' -V --exec 'guile -l' -- 'main.scm'
 
+sudo cp ./lib/sendkeys/xsendkey /usr/bin
+sudo cp ./xsendkey /usr/bin
+xsendkey -display 'Firefox' 'Control+t'
+windowId=`wmctrl -l | awk "/$title/ {print "'$1}'`
+
+/usr/include/X11/keysymdef.h
+
+
+find /usr/ -iname keysymdef.h
+# WORKS
+xsendkey Control+Shift+T
+xsendkey Control+T
+xsendkey 'Control+T'
+'firefox' 
+#define XK_Control_L                     0xffe3 
+#define XK_t                             0x0074 
+XK_T                             0x0054  
+
 nodemon --watch '**/*.scm' --ext 'scm' --exec 'guile -l' -- 'main.scm'
 
 nodemon --watch './src/sh/*.sh' --ext 'sh' --exec 'bash' -- './src/sh/bindkeys.sh'
@@ -146,6 +164,22 @@ Print contents of X events.
 /usr/include/X11/keysymdef.h
 X11 KeySym definitions.
 
+
+
+
+
+(xbindkey '(shift a) "xsel -v --clipboard --output --selectionTimeout 3000")
+(xbindkey '(shift z) "xbindkeys_show")
+(xbindkey '(shift x) "xsel --clipboard --output --selectionTimeout 3000")
+(xbindkey '(shift c) "xclip -out -selection 'clipboard'")
+(xbindkey '(shift v) "xclip -verbose -out -loops 3 -selection 'clipboard'")
+(xbindkey '(shift b) "xclip -out -loops 3 -selection 'clipboard'")
+(xbindkey '(shift n) "xbindkeys --show")
+(xbindkey '(alt v) "xsendkey Control+Shift+T")
+
+(xbindkey-function '(shift a)
+		   (lambda ()
+      ))
 
 sudo python customizable_hotkey.py
 wmctrl -l | awk '{print $0}'

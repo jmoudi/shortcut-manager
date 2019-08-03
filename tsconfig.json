@@ -1,5 +1,5 @@
 {
-  "extends": "/home/jm/Projects/Config/tsc/tsconfig.app",
+  "extends": "/home/jm/Projects/Config/tsc/tsconfig.module",
 
   "compilerOptions": {
     //"noEmit": true,
@@ -14,6 +14,6 @@
   },
  
   "include": [
-    "./src/**/*", "./test/" 
+    "./src/**/*"  
   ]
 }

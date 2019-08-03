@@ -28,14 +28,21 @@ interface Functaa2 {
     (name: 'xbindkey-function', fn: (hotkey: string, func: string) => string): SchemeCode;
     (name: 'debug', fn: (hotkey: string, func: number) => number): SchemeCode;
  };
+
+ type BoundFnc <T extends any[]>() = SchemeCode
  type Funct4 = {
     
-    //name: 'xbindkey-function2',
-    (name: XFunc, fn: Function): SchemeCode;
-    (name: 'xbindkey-function2', fn: (hotkey: string, func: string) => string): SchemeCode;
-    (name: 'xbindkey-function', fn: (hotkey: string, func: string) => string): SchemeCode;
-    (name: 'debug', fn: (hotkey: string, func: number) => number): SchemeCode;
+ 
+    (name: 'xbindkey-function2', fn: (hotkey: string, func: string) => string): BoundFnc;
+    (name: 'xbindkey-function', fn: (hotkey: string, func: string) => string): BoundFnc;
+    (name: 'debug', fn: (hotkey: string, func: number) => number): BoundFnc;
  }
+const createFunc = (name: string, fn: (...args: any[]) => string) => {
+
+    return (...args: Parameters<typeof fn>) => fn(...args)
+};
+const yy: Func4 = () => 
+
 interface FJJ extends Functaa2 {
     (name: XFunc, fn: Function): SchemeCode
 }

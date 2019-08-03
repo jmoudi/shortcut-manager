@@ -131,10 +131,10 @@
 		     (display "Hello from Scheme!")
 		     (newline)))
 
-(xbindkey '(shift a) "xsel -v --clipboard --output --selectionTimeout 3000")
-(xbindkey '(shift z) "xbindkeys_show")
-(xbindkey '(shift x) "xsel --clipboard --output --selectionTimeout 3000")
-(xbindkey '(shift c) "xclip -out -selection 'clipboard'")
-(xbindkey '(shift v) "xclip -verbose -out -loops 3 -selection 'clipboard'")
-(xbindkey '(shift b) "xclip -out -loops 3 -selection 'clipboard'")
-(xbindkey '(shift n) "xbindkeys --show")
+(xbindkey-function '(shift v)
+                   (lambda ()
+                     (run-command "xsendkey Control+Shift+T")))
+
+(xbindkey-function '(alt c)
+                   (lambda ()
+                     (run-command "xsendkey Control+Shift+T")))

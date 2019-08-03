@@ -1,4 +1,5 @@
-
+import d from ''
+getenv 'NODE_PATH'
 const x1 = (hotkey: string, func: string) => {
     return 'dfd'
 }
