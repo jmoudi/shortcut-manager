@@ -2,11 +2,16 @@
 ##
 ### WEBEXT
 
+
+ts-node -r tsconfig-paths  './packages/HKDaemon/src/watch'
+
+ts-node-dev -r tsconfig-paths --debug './packages/HKDaemon/src/watch'
+cd ./packages/HKDaemon && yarn link @std/log @std/subprocess @std/async @std/fs
+cd ../..
 nodemon -- './src/bindkeys.sh'
 
-
+--debug --log-error
 xbindkeys -v -fg './config/conf1.scm'
-
 
 xbindkeys -v --geometry --file-guile='./config/conf1.scm'
 

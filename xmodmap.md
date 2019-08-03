@@ -2,6 +2,7 @@
 https://renenyffenegger.ch/notes/Linux/X/XKB/database#keycodes
 
 
+yarn link @std/log @std/subprocess @std/async @std/fs
 
 
 

@@ -1,6 +1,10 @@
-  
+  #include <X11/Xlib.h>
+#include <X11/Intrinsic.h>
+#include <X11/extensions/XTest.h>
+#include <unistd.h>
+
   // To send key events with XSendEvent(), we must set required parameters in a XKeyEvent struct and then invoke XSendEvent(). 
-  
+  void defineEvent(){
   XKeyEvent event;
 
   event.display = display;
@@ -17,9 +21,11 @@
   event.type = KeyPress;  or  event.type = KeyRelease;
   event.keycode = keycode;
   event.state = modifiers;
+};
 
+int main (){
   XSendEvent(event.display, event.window, TRUE, KeyPressMask, (XEvent *)event);
-
+}
    e/* vent.window (and the second parameter of XSendEvent()) is the window ID of the destination of the event. To send the event to the window which has the input focus at the time, we can use the value obtained via XGetInputFocus(). To send the event to a specific window, we should set the window ID to event.window, and set keyboard focus to the window XSendEvent().
 
 event.keycode is the keycode to be sent, and clients can reproduce the keysym from the keycode and value of the modifiers specified as event.modifiers.

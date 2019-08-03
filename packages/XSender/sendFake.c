@@ -4,6 +4,9 @@
 #include <X11/Intrinsic.h>
 #include <X11/extensions/XTest.h>
 #include <unistd.h>
+
+
+
 /* Send Fake Key Event */
 static void SendKey (Display * disp, KeySym keysym, KeySym modsym){
  KeyCode keycode = 0, modcode = 0;
@@ -16,12 +19,12 @@ static void SendKey (Display * disp, KeySym keysym, KeySym modsym){
   XTestFakeKeyEvent (disp, modcode, True, 0);
  }
  /* Generate regular key press and release */
- XTestFakeKeyEvent (disp, keycode, True, 0);
+ XTestFakeKeyEvent (disp, keycode, True, 0); //15 CurrentTime
  XTestFakeKeyEvent (disp, keycode, False, 0); 
  
  /* Generate modkey release */
- if (modsym != 0)
-  XTestFakeKeyEvent (disp, modcode, False, 0);
+/*  if (modsym != 0)
+  XTestFakeKeyEvent (disp, modcode, False, 0); */
  
  XSync (disp, False);
  XTestGrabControl (disp, False);
@@ -29,7 +32,7 @@ static void SendKey (Display * disp, KeySym keysym, KeySym modsym){
  
 /* Main Function */
 int main (){
- Display *disp = XOpenDisplay (NULL);
+ Display *disp = XOpenDisplay(NULL);
  sleep (5);
  /* Send ASCII A & B */
  SendKey (disp, XK_A, 0);

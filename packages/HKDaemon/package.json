@@ -1,5 +1,5 @@
 {
-	"name": "hotkey-manager",
+	"name": "@hk/daemon",
 	"version": "0.0.2",
 	"main": "./src/index.ts",
 	"scripts": {
@@ -15,18 +15,11 @@
 		"build": "tsc --build --listEmittedFiles --traceResolution"
 	},
 	"dependencies": {
-		"@types/node": "",
-		"@types/execa": "",
-		"execa": ""
+
 	},
 	"devDependencies": {
-		"ts-node-dev": "",
-		"@types/jest": "",
-		"jest": "",
-		"ts-jest": "",
-		"typescript": "",
-		"tslib": "",
-		"tsconfig-paths": ""
+		"@types/node": "",
+		"@types/jest": ""
 	},
 	"private": true,
 	"author": "Jonas Moudi"
