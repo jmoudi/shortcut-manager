@@ -3,6 +3,13 @@
 ### WEBEXT
 
 
+
+https://github.com/Keruspe/GPaste
+
+
+ts-node-dev -r tsconfig-paths --debug './packages/HKDaemon/src/index.ts'
+ts-node-dev -r tsconfig-paths --debug './packages/HKDaemon/src/watch.ts'
+
 ts-node -r tsconfig-paths  './packages/HKDaemon/src/watch'
 
 ts-node-dev -r tsconfig-paths --debug './packages/HKDaemon/src/watch'
@@ -21,6 +28,17 @@ xbindkeys -v --geometry --file-guile="/config/conf1.scm"
 xbindkeys -v --geometry --file-guile ./config/conf1.scm
 xbindkeys -v -fg '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
 ./src/sh/xbindkeys-ipc.sh reload '/home/jm/Projects/Apps/HotkeyManager/config/xb-main.scm'
+
+
+
+
+"(Scheme function)"
+m:0x0 + c:36
+Return
+
+"(Scheme function)"
+m:0x0 + c:66
+KP_Enter
 
 
 nodemon --exec "bash -v" ./app.py

@@ -5,8 +5,6 @@
 #include <X11/extensions/XTest.h>
 #include <unistd.h>
 
-
-
 /* Send Fake Key Event */
 static void SendKey (Display * disp, KeySym keysym, KeySym modsym){
  KeyCode keycode = 0, modcode = 0;
@@ -28,6 +26,7 @@ static void SendKey (Display * disp, KeySym keysym, KeySym modsym){
  
  XSync (disp, False);
  XTestGrabControl (disp, False);
+ XFlush(disp);
 }
  
 /* Main Function */
@@ -42,6 +41,7 @@ int main (){
  SendKey (disp, XK_Tab, XK_Alt_L);
  sleep (3);
  SendKey (disp, XK_Tab, XK_Alt_L);
+ return 0;
 }
 /* 
  gcc fakeKey.c -o fakeKey -lX11 -lXtst -lXext

@@ -1,15 +1,17 @@
-import {FSWatcher, Stats} from '@std/fs'
+import {FSWatcher, Stats,pathExists} from '@std/fs'
 import {Logger,log} from '@std/log';
 import {execa} from '@std/subprocess';
 import {fromEvent} from '@std/async';
+import path from 'path';
 
 const gcc = (args: string[]) => execa('gcc', args, {
-    stdio: ['inherit'],
+    stdio: ['pipe', 'pipe', 'pipe'],
     timeout: 10000
 });
-const runFile = (src: string) => execa(src, {
-    stdio: ['inherit'],
-    timeout: 10000
+const runCompiledFile = (src: string) => execa(src, {
+    stdio: ['pipe', 'pipe', 'pipe'],
+    timeout: 10000,
+    env: process.env
 });
 
 
@@ -19,36 +21,52 @@ interface FileListener {
     (path: string, stats: Stats): Promise<any>; //|void
 }
 
-const runCFile: FileListener = async (file, stats) => {
-    logger.info('ch', file, stats);
-    const dest = './XSender/bin/fakeKey';
-    const compileTask = gcc([
+const handleCFilesChanges: FileListener = async (file, stats) => {
+    const dest = path.join('./packages/XSender/bin', path.parse(file).name);
+    logger.info('ch', file, dest);
+    const compileTask = await gcc([
         file, //'./XSender/fakeKey.c', 
         '-o', 
-        './XSender/bin/fakeKey', 
+        dest, 
         '-lX11', '-lXtst', '-lXext'
     ]);
-    const runTask = runFile(dest);
-    const res = await Promise.all([
+    //logger.info(compileTask)
+    //const runTask = runFile(dest);
+    //await compileTask();
+    await pathExists(dest);
+    //const res = await runCompiledFile(dest);return res;
+/*     const res = await Promise.all([
         compileTask,
-        runTask
-    ]);
-    return res;
+        //runTask
+    ]); */
+    
 
 }
 
+type WatchOptions = ConstructorParameters<typeof FSWatcher>[0];
+const o: WatchOptions = {}
+const defOpts: WatchOptions = {
+    disableGlobbing: false,
+    //cwd: path.resolve(process.cwd(), `..`, ),
+    cwd: path.resolve(process.cwd()),
+    alwaysStat: true,
+    depth: 10,
 
+    //atomic: true,
+    awaitWriteFinish: true
+}
 class CFileWatcher extends FSWatcher {
-    options = {
-        //cwd: path.resolve(process.cwd(), `..`, ),
+    /* options = {
+        cwd: path.resolve(process.cwd()),
         alwaysStat: true,
-        depth: 5,
+        depth: 10,
+    
         //atomic: true,
         awaitWriteFinish: true
-    }
+    } */
 
     constructor(){
-        super();
+        super(defOpts);
         this.bindHooks();
 /*         this.add([
             './packages/XSender/sendFake.c'
@@ -75,8 +93,8 @@ class CFileWatcher extends FSWatcher {
     }
 
     onChange: FileListener = async (file, stats) => {
-        logger.info(`onChange`, file, stats);
-        const res = await runCFile(file, stats).catch((p) => this.handleError(p));
+        logger.info(`onChange`, file);
+        const res = await handleCFilesChanges(file, stats).catch((p) => this.handleError(p));
         logger.info(`res`, res);
         //return res
     }
@@ -87,9 +105,12 @@ class CFileWatcher extends FSWatcher {
 
 const startWatching = async () => {
     const watcher = new CFileWatcher();
+    logger.info('watcher', watcher.getWatched());
     watcher.add([
-        './packages/XSender/sendFake.c'
-    ])
+        './packages/**/sendFake.c'
+    ]);
+    logger.info('watcher', watcher.getWatched());
+
     watcher.on('error', err => watcher.handleError(err));
     watcher.on('change', (path, stats) => watcher.onChange(path, stats));
     

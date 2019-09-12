@@ -4,7 +4,7 @@
 	"main": "./src/index.ts",
 	"scripts": {
 		"test": "jest --watch",
-		"runwatcher":"ts-node-dev './packages/HKDaemon/watch'",
+		"runwatcher":"ts-node-dev -r tsconfig-paths --debug './packages/HKDaemon/src/watch'",
 		"runsh":"ts-node-dev './packages/XSender/sendFake'",
 		"r1": "nodemon --config './nodemon.config.json' -- './src/bindkeys.sh'",
 		"run": "nodemon -- ./src/main.ts",

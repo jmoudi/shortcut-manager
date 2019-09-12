@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/jm/Projects/Apps/SystemTools/SendKeys/SendKeys.csproj": {}
+  },
+  "projects": {
+    "/home/jm/Projects/Apps/SystemTools/SendKeys/SendKeys.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/jm/Projects/Apps/SystemTools/SendKeys/SendKeys.csproj",
+        "projectName": "SendKeys",
+        "projectPath": "/home/jm/Projects/Apps/SystemTools/SendKeys/SendKeys.csproj",
+        "packagesPath": "/home/jm/.nuget/packages/",
+        "outputPath": "/home/jm/Projects/Apps/SystemTools/SendKeys/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/home/jm/.lib/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/jm/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.2"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.2": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.2": {
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.2.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
