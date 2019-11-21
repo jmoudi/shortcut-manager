@@ -1,0 +1,15 @@
+{
+  "extends": "/home/jm/Projects/Config/tsc/tsconfig.module",
+  "compilerOptions": {
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "rootDir": "./src/",
+    "outDir": "./dist/",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["./src/**/*", "../config-builder/createScm.ts"]
+}
