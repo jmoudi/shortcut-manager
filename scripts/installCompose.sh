@@ -9,6 +9,15 @@ function installcxx(){
 };
 installcxx
 
+function installax(){
+    cd lib
+    git clone "https://github.com/jamolnng/argparse"
+    cd argparse
+    make
+};
+installax
+
+
  local xcompose='
 # This file defines custom Compose sequences for Unicode characters
 # Import default rules from the system Compose file:

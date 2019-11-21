@@ -5,6 +5,11 @@ xbindkeys -v -f './x1.conf'
 nodemon --config './nodemon.config.json' -- './src/*sh/bindkeys.sh*'
 
 
+cd ./src/x-go
+
+go run ./main.go
+
+
  "./src/config/*.*",
         "./**/*.sh"
     ],
