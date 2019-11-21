@@ -53,33 +53,30 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
     // press down shift keys one at a time...
     //
 
-    if (shift & ShiftMask) {
-	event.keycode = XKeysymToKeycode(display, XK_Shift_L);
-	SendEvent(&event);
-	event.state |= ShiftMask;
+     if (shift & ShiftMask) {
+	    event.keycode = XKeysymToKeycode(display, XK_Shift_L);
+        printf("SHIFT %d", event.keycode);
+	    SendEvent(&event);
+	    event.state |= ShiftMask;
     }
     if (shift & ControlMask) {
-	event.keycode = XKeysymToKeycode(display, XK_Control_L);
-	SendEvent(&event);
-	event.state |= ControlMask;
+        event.keycode = XKeysymToKeycode(display, XK_Control_L);
+        printf("ControlMask %d", event.keycode);
+        SendEvent(&event);
+        event.state |= ControlMask;
     }
-
-    if (shift & Mod1Mask) {
+     if (shift & Mod1Mask) {
         event.keycode = XKeysymToKeycode(display, XK_Alt_L);
         SendEvent(&event);
         event.state |= Mod1Mask;
     }
     if (shift & meta_mask) {
-	event.keycode = XKeysymToKeycode(display, XK_Meta_L);
-	SendEvent(&event);
-	event.state |= meta_mask;
+        event.keycode = XKeysymToKeycode(display, XK_Meta_L);
+        SendEvent(&event);
+        event.state |= meta_mask;
     }
 
-    //
     //  Now with shift keys held down, send event for the key itself...
-    //
-
-
     // fprintf(stderr, "sym: 0x%x, name: %s\n", keysym, keyname);
     if (keysym != NoSymbol) {
         event.keycode = XKeysymToKeycode(display, keysym);
@@ -95,9 +92,9 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
     //
 
     if (shift & ShiftMask) {
-	event.keycode = XKeysymToKeycode(display, XK_Shift_L);
-	SendEvent(&event);
-	event.state &= ~ShiftMask;
+        event.keycode = XKeysymToKeycode(display, XK_Shift_L);
+        SendEvent(&event);
+        event.state &= ~ShiftMask;
     }
     if (shift & ControlMask) {
         event.keycode = XKeysymToKeycode(display, XK_Control_L);
@@ -118,16 +115,7 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
 
 void	usage()
 {
-    fprintf(stderr,
-        "usage: %s [-window <id>|root]\n"
-        "            [-count <count>]\n"
-        "            [-display <name>] [Modifier+[Modifier+]]Key\n"
-        "(looks up keysyms in <X11/keysymdef.h>)\n"
-        "'Alt',   'Control',   'Shift' are replaced by\n"
-        "'Alt_L', 'Control_L', 'Shift_L'...\n"
-        "  example:\n"
-        "     %s Control+Alt+Right\n", progname, progname);
-    exit(1);
+ 
 }
 
 int	main(int argc, char **argv)
@@ -220,24 +208,26 @@ int	main(int argc, char **argv)
             /* keysym = strtoul(argv[ii], NULL, 0); */
         }
     }
-    if (keyname[0] == 0) {
+/*     if (keyname[0] == 0) {
         fprintf(stderr, "%s: you must specify a keyname.\n", progname);
         exit(1);
+    } */
+
+    if(displayname == NULL){
+	    displayname = getenv("DISPLAY");
     }
 
-    if(displayname == NULL)
-	displayname = getenv("DISPLAY");
-
-    if(displayname == NULL)
-	displayname = ":0.0";
+    if(displayname == NULL){
+	    displayname = ":0.0";
+    }
 
     display = XOpenDisplay(displayname);
 
     if(display == NULL)
     {
-	fprintf(stderr, "%s: can't open display `%s'.\n",
+	    fprintf(stderr, "%s: can't open display `%s'.\n",
 		progname, displayname);
-	exit(1);
+	    exit(1);
     }
 
     if(window == 0)
@@ -250,7 +240,9 @@ int	main(int argc, char **argv)
 
     // now do the work:
     for (ii=0;ii<(int)count;ii++)
-      SendKeyPressedEvent(keysym, shift);
+    keysym = XK_V;
+    printf("keysym %d", keysym);
+    SendKeyPressedEvent(keysym, shift);
 
     XCloseDisplay(display);
 
