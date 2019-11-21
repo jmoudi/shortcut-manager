@@ -34,7 +34,7 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
     XKeyEvent		event;
 
     // Meta not yet implemented (Alt used instead ;->)
-    int meta_mask=0;
+    //int meta_mask=0;
 
     event.display	= display;
     event.window	= window;
@@ -53,19 +53,19 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
     // press down shift keys one at a time...
     //
 
-     if (shift & ShiftMask) {
+/*      if (shift & ShiftMask) {
 	    event.keycode = XKeysymToKeycode(display, XK_Shift_L);
         printf("SHIFT %d", event.keycode);
 	    SendEvent(&event);
 	    event.state |= ShiftMask;
-    }
-    if (shift & ControlMask) {
+    } */
+    //if (shift & ControlMask) {
         event.keycode = XKeysymToKeycode(display, XK_Control_L);
         printf("ControlMask %d", event.keycode);
         SendEvent(&event);
         event.state |= ControlMask;
-    }
-     if (shift & Mod1Mask) {
+    //}
+/*      if (shift & Mod1Mask) {
         event.keycode = XKeysymToKeycode(display, XK_Alt_L);
         SendEvent(&event);
         event.state |= Mod1Mask;
@@ -74,8 +74,8 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
         event.keycode = XKeysymToKeycode(display, XK_Meta_L);
         SendEvent(&event);
         event.state |= meta_mask;
-    }
-
+    } */
+    printf("CCCCCv %d", event.keycode);
     //  Now with shift keys held down, send event for the key itself...
     // fprintf(stderr, "sym: 0x%x, name: %s\n", keysym, keyname);
     if (keysym != NoSymbol) {
@@ -91,26 +91,26 @@ void	SendKeyPressedEvent(KeySym keysym, unsigned int shift)
     // Now release all the shift keys...
     //
 
-    if (shift & ShiftMask) {
+/*     if (shift & ShiftMask) {
         event.keycode = XKeysymToKeycode(display, XK_Shift_L);
         SendEvent(&event);
         event.state &= ~ShiftMask;
-    }
+    } */
     if (shift & ControlMask) {
         event.keycode = XKeysymToKeycode(display, XK_Control_L);
         SendEvent(&event);
         event.state &= ~ControlMask;
     }
-    if (shift & Mod1Mask) {
+/*     if (shift & Mod1Mask) {
         event.keycode = XKeysymToKeycode(display, XK_Alt_L);
         SendEvent(&event);
         event.state &= ~Mod1Mask;
     }
     if (shift & meta_mask) {
-	event.keycode = XKeysymToKeycode(display, XK_Meta_L);
-	SendEvent(&event);
-	event.state &= ~meta_mask;
-    }
+        event.keycode = XKeysymToKeycode(display, XK_Meta_L);
+        SendEvent(&event);
+        event.state &= ~meta_mask;
+    } */
 }
 
 void	usage()
@@ -239,8 +239,10 @@ int	main(int argc, char **argv)
     }
 
     // now do the work:
-    for (ii=0;ii<(int)count;ii++)
-    keysym = XK_V;
+    for (ii=0;ii<(int)count;ii++){
+            keysym = XK_V;
+keysym = XK_V;
+    }
     printf("keysym %d", keysym);
     SendKeyPressedEvent(keysym, shift);
 
