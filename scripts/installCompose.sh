@@ -1,6 +1,14 @@
  # ~/.XCompose
  
- 
+function installcxx(){
+    cd lib
+    git clone "https://github.com/jarro2783/cxxopts"
+    cd cxxopts
+    cmake ./
+    make
+};
+installcxx
+
  local xcompose='
 # This file defines custom Compose sequences for Unicode characters
 # Import default rules from the system Compose file:
