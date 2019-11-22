@@ -1,18 +1,45 @@
-import {exec, execFile,spawn} from 'child_process';
-import {default as execa} from 'execa';
+import { pipe } from 'fp-ts/lib/pipeable';
+import {execa} from '@std/subprocess';
+import {
+    read as readFromClipboard, 
+    write as writeToClipboard} from 'clipboardy';
+import {execFile,execFileSync} from 'child_process';
+import path from 'path';
 
-import {} from '../utils/clipboard';
-import {read as readFromClipboard, write as writeToClipboard} from 'clipboardy';
+const binp = path.resolve("../../bin/paste");
 
-export async function paste(text: string){
-    const newContent = `123aaaaabc`;
-    console.time("1");
+const pressCtrlV = () => execa(binp, {
+    buffer: false,
+    stdio: ['pipe','pipe','pipe'],
+    cleanup: true,
+    stripFinalNewline: true,
+    timeout: 10000
+}); //promisify(() => execa(binp));
+const pressCtrlVStestync = () => execFileSync(binp, {
+    buffer: false,
+    stdio: ['pipe','pipe','pipe'],
+    cleanup: true,
+    stripFinalNewline: true,
+    timeout: 10000
+});
+
+export async function pasteText(text: string){
+    const newContent = text;
+    const d = Date.now().toString();
+    console.time(d);
     const oldContent = await readFromClipboard();
+    console.log("oldContent", oldContent)
     await writeToClipboard(newContent);
+    console.log("newContent", newContent)
     //console.log(`oldContent`, oldContent);
-    const res = await execa(`./lib/xsendkey`, [`Control+v`]);
+    //const o = await pressCtrlV();
+    const o = pressCtrlVStestync();
+    //o.stderr
+    //const res = await execFile(`./lib/xsendkey`, [`Control+v`]);
     await writeToClipboard(oldContent);
-    console.timeEnd("1");
+    const aaaa = await readFromClipboard();
+    console.log("finished", aaaa, o.toString())
+    console.timeEnd(d);
     //console.log(`res`, res);
     //execFile(`./lib/xsendkey`, [`Control+v`]);
     //spawn(`xdotool`, [`key`, `ctrl+v`]);

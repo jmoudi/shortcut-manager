@@ -1,8 +1,8 @@
-import {pipe} from 'rxjs';
-import { start } from './init';
+import { run } from './init';
 async function main(){
-    console.clear()
-    const res = start();
+    //console.clear()
+    console.log(`aaaaa`);
+    const res = await run();
     console.log(`res`,  res);
     return res;
 }

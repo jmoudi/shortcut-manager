@@ -4,7 +4,9 @@ passwords:
 email:
     jmv: &jmvumx "jmvumx@gmail.com"
 keys:
-    - { key: [alt, a], command: enter, 
+    - { key: [alt_L, a], command: enter, 
         args: [test, test2] }
-    - { key: [alt, x], command: enter, 
+    - { key: [Alt_L, x], command: enter, 
         args: [testss, test2] }
+    - { key: [alt, c], command: enter, 
+        args: [aaa, 1111] }
