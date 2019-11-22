@@ -14,8 +14,18 @@ go run ./main.go
         "./**/*.sh"
     ],
 
-    nodemon --watch './XSender2/src/*.*' --ext 'sh' --exec 'gcc ./src/run.c -o run' -- './test.sh'
-
+ 
     nodemon --watch './src/*.*' --ext 'c' --exec './compile.sh' -- './src/xsendkey.c'
 
 chmod +x
+nodemon --watch './src/x-sender/**/*.*' --ext 'c' --exec './scripts/compile.sh' -- './src/x-sender/src/xsend.c' "./bin/paste"
+
+./scripts/rund.sh "./src/config/x1.scm"
+./scripts/rund.sh "./src/config/x1.scm"
+
+
+./scripts/compile.sh "./src/x-sender/src/xsend.c" "./bin/paste"
+./scripts/rund.sh "./src/config/.xbindkeysrc.scm"
+./scripts/rund.sh "./src/config/x1.scm"
+
+xbindkeys -v -n -fg "./src/config/.xbindkeysrc.scm"

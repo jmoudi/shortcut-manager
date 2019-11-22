@@ -1,0 +1,10 @@
+passwords:
+    we: &we []
+    st: &st []
+email:
+    jmv: &jmvumx "jmvumx@gmail.com"
+keys:
+    - { key: [alt, a], command: enter, 
+        args: [test, test2] }
+    - { key: [alt, x], command: enter, 
+        args: [testss, test2] }

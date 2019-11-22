@@ -1,8 +1,13 @@
 package main
 
-// #cgo CFLAGS: -g -Wall
+// #cgo CFLAGS: -v -lX11 -g -Wall
+// #include <stdio.h>
 // #include <stdlib.h>
-// #include "greeter.h"
+// #include <string.h>
+// #include <X11/Xlib.h>
+// #include <X11/keysym.h>
+// #include <stdlib.h>
+// #include "xsendkey.h"
 import "C"
 import (
 	"fmt"
@@ -19,7 +24,8 @@ func main() {
 		name: name,
 		year: year,
 	}
-	size := C.greet(&g, (*C.char)(ptr))
+	sizse := C.XK_V
+	size := C.SendKeyPressedEvent(&g, (*C.char)(ptr))
 
 	b := C.GoBytes(ptr, size)
 	fmt.Println(string(b))

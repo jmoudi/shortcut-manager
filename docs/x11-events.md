@@ -1,5 +1,43 @@
 
 
+ButtonRelease event, serial 40, synthetic NO, window 0x9200001,
+    root 0x16a, subw 0x0, time 37791712, (127,85), root:(127,1107),
+    state 0x100, button 1, same_screen YES
+
+KeyPress event, serial 40, synthetic NO, window 0x9200001,
+    root 0x16a, subw 0x0, time 37791768, (127,85), root:(127,1107),
+    state 0x0, keycode 40 (keysym 0x64, d), same_screen YES,
+    XLookupString gives 1 bytes: (64) "d"
+    XmbLookupString gives 1 bytes: (64) "d"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 40, synthetic NO, window 0x9200001,
+    root 0x16a, subw 0x0, time 37791870, (127,85), root:(127,1107),
+    state 0x0, keycode 40 (keysym 0x64, d), same_screen YES,
+    XLookupString gives 1 bytes: (64) "d"
+    XFilterEvent returns: False
+
+KeyPress event, serial 40, synthetic NO, window 0x9200001,
+    root 0x16a, subw 0x0, time 37792587, (127,85), root:(127,1107),
+    state 0x0, keycode 41 (keysym 0x66, f), same_screen YES,
+    XLookupString gives 1 bytes: (66) "f"
+    XmbLookupString gives 1 bytes: (66) "f"
+    XFilterEvent returns: False
+
+KeyRelease event, serial 40, synthetic NO, window 0x9200001,
+    root 0x16a, subw 0x0, time 37792754, (127,85), root:(127,1107),
+    state 0x0, keycode 41 (keysym 0x66, f), same_screen YES,
+    XLookupString gives 1 bytes: (66) "f"
+    XFilterEvent returns: False
+
+
+
+xorg-xev
+xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
+
+sudo showkey --scancodeszz
+
+xev -event keyboard
 https://www.uninformativ.de/blog/postings/2017-04-02/0/POSTING-en.html
 
 

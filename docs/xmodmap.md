@@ -81,11 +81,11 @@ keycode 118 = Insert NoSymbol Insert
 keycode 119 = Delete NoSymbol Delete
 
 
-xorg-xev
+
 xbindkeys
 xorg-xmodmap
-xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 
+xev | rg 'KeyPress'
 
 !
 ! Swap Caps_Lock and Control_L

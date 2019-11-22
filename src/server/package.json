@@ -1,32 +1,27 @@
 {
 	"name": "hotkey-manager",
-	"version": "0.0.2",
+	"version": "1.0.2",
 	"main": "./src/index.ts",
 	"scripts": {
 		"test": "jest --watch",
-		"runwatcher":"ts-node-dev -r tsconfig-paths --debug './packages/HKDaemon/src/watch'",
-		"runsh":"ts-node-dev './packages/XSender/sendFake'",
-		"r1": "nodemon --config './nodemon.config.json' -- './src/bindkeys.sh'",
-		"run": "nodemon -- ./src/main.ts",
-		"updperm":"",
-		"test:nodemon": "nodemon --config ./config/nodemon.config.json -- ./test/main.test.ts",
-		"watch": "ts-node-dev --transpileOnly --respawn --prefer-ts --require /home/jm/Projects/Tools/node-debug/src/loadpaths.ts  ./src/watcher.ts",
-		"start": "ts-node -r tsconfig-paths/register -- ./src/main.ts",
-		"build": "tsc --build --listEmittedFiles --traceResolution"
+		"compile": "tsc -b -i --listEmittedFiles -w",
+		"compile:nw": "tsc -b -i --listEmittedFiles",
+		"run:test": "ts-node-dev --transpileOnly --respawn --prefer-ts -r '/home/jm/Projects/Modules/ts/node/resolve-paths/src/loadpaths.ts' ./src/main.ts",
+		"run": "ts-node -r '/home/jm/Projects/Modules/ts/node/resolve-paths/src/loadpaths.ts' ./src/main.ts",
+		"show-configs": "tsc --showConfig && echo \n=======\n && jest --showConfig"
 	},
 	"dependencies": {
-		"@types/node": "",
-		"@types/execa": "",
-		"execa": ""
+		"@types/micromatch": "^3.1.1",
+		"clipboardy": "^2.1.0",
+		"copy-to-clipboard": "^3.2.0",
+		"fp-ts": "^2.1.2",
+		"iohook": "^0.6.1",
+		"micromatch": "^4.0.2",
+		"rxjs": "^6.5.3"
 	},
 	"devDependencies": {
-		"ts-node-dev": "",
 		"@types/jest": "",
-		"jest": "",
-		"ts-jest": "",
-		"typescript": "",
-		"tslib": "",
-		"tsconfig-paths": ""
+		"@types/node": ""
 	},
 	"private": true,
 	"author": "Jonas Moudi"
