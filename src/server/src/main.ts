@@ -1,4 +1,6 @@
 import { init,init2 } from '@/app/init';
+
+//DEPRECATED because the ioHook-listener doesn't prevent the pressed keys from firing
 async function main(){
     //console.clear()
     console.log(`aaaaa`);

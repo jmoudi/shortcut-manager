@@ -50,6 +50,35 @@ export async function pasteText(text: string){
     console.timeEnd(d);
 } 
 
+const args = ['aaa', 'bbb', 'ccc']
+export async function pasteText3(text: string){
+    const newContent = text;
+    const d = Date.now().toString();
+    console.time(d);
+    const oldContent = await readFromClipboard();
+    console.log("oldContent", oldContent)
+    await writeToClipboard(newContent);
+    console.log("newContent", newContent)
+    //console.log(`oldContent`, oldContent);
+    //const o = await pressCtrlV();
+    const binp1 = path.resolve("../x-sender/test/t1.o");
+
+    const ppp = () => exec(binp1, args, {
+        buffer: false,
+        stdio: ['pipe','pipe','pipe'],
+        cleanup: true,
+        stripFinalNewline: true,
+        timeout: 10000
+    });
+    const o = ppp();
+    //o.stderr
+    //const res = await execFile(`./lib/xsendkey`, [`Control+v`]);
+    await writeToClipboard(oldContent);
+    const aaaa = await readFromClipboard();
+    console.log("finished s", aaaa, o.toString())
+    console.timeEnd(d);
+} 
+
 export async function pasteText2(text: string){
     const newContent = text;
     const d = Date.now().toString();

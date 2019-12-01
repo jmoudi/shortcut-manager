@@ -4,7 +4,7 @@ import { fromEvent } from 'rxjs';
 import ioHook from 'iohook';
 import { IOHookEvent, IoHookInit, Evt } from '@/types';
 import { loadConfig } from '@/tasks/load-config';
-import {  /*  */pasteText } from '@/tasks/send';
+import {  /*  */pasteText,pasteText3 } from '@/tasks/send';
 
  
 import { CachedKey } from './CachedKey';
@@ -65,13 +65,18 @@ registered.set(); */
 
 const onPressed = async <T extends IOHookEvent>(e: T) => {
     
-    logger.info("eee", e);
+    logger.info("pasteText", e);
     await pasteText("test");
+};
+const onPressed2 = async <T extends IOHookEvent>(e: T) => {
+    
+    logger.info("pasteText3", e);
+    await pasteText3("test3");
 };
 const onPressedDebug = async <T extends IOHookEvent>(e: T) => {
     
     logger.info("debug: event", e);
-};test
+};
 
 const registerKeycodes = (c: CachedKey) => {
     logger.info(`cssd`, c);
@@ -95,8 +100,8 @@ export async function init({ logging }: IoHookInit = defaultInit) {
         keymap: keysyms 
     });
     app.register(['alt', 'a'], onPressedDebug);
-    app.register(['shift', 'a'], onPressedDebug);
-    app.register(['alt', 'd'], onPressed);
+    app.register(['shift', 'd'], onPressed);
+    app.register(['shift', 's'], onPressed2);
     app.start();
     // @ts-ignore
     //app.register([31, 56], onPressedDebug);

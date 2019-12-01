@@ -27,6 +27,10 @@ nodemon --watch './src/*.*' --ext 'c' --exec './scripts/compile.sh' -- './src/x-
 
  -stdlib=<arg>, --stdlib=<arg>, --stdlib <arg>¶
 
+https://github.com/kfish/xsel
+
+
+
 clang -Werror --include-directory "./lib/cxxopts/include" --include-directory "/usr/include/c++/9.2.0/experimental" -o "./bin/example" "./src/x-sender/test/t1.cpp"
 
 clang -Werror --include-directory "./lib/cxxopts/include" --include-directory "/usr/include/c++/9.2.0" -o "./bin/example" "./src/x-sender/test/t1.cpp"
