@@ -5,8 +5,9 @@ import {conformsTo} from '@std/fp'
 import { normalizeKey } from './utils/string-utils';
 
 
-interface IOConfig{
-
+export interface IOHookOptions{
+  rawCode: boolean;
+  disableClickPropagation: boolean;
 }
 export class IOHookApp {
   ioHook: IOHook
@@ -19,7 +20,7 @@ export class IOHookApp {
   init(){
     this.ioHook = ioHook;
   }
-  configure(){
+  configure(opts: Partial<IOHookOptions>){
     this.ioHook.useRawcode(true);
     this.ioHook.disableClickPropagation();
     //ioHook.setDebug(true); // Uncomment this line for see all debug information from iohook

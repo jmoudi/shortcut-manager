@@ -35,7 +35,9 @@ KeyRelease event, serial 40, synthetic NO, window 0x9200001,
 xorg-xev
 xev | awk -F'[ )]+' '/^KeyPress/ { a[NR+2] } NR in a { printf "%-3s %s\n", $5, $8 }'
 
-sudo showkey --scancodeszz
+sudo showkey --scancodes
+
+zz
 
 xev -event keyboard
 https://www.uninformativ.de/blog/postings/2017-04-02/0/POSTING-en.html

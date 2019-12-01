@@ -15,13 +15,22 @@ import { taskify, fold as t  } from 'fp-ts/lib/TaskEither'
 import { Option, none, some, fromNullable, map, chain, isSome } from 'fp-ts/lib/Option';
 import { lookup } from 'fp-ts/lib/Array';
 
+/**
+ * get 'xmodmap -pke' keysym table
+ */
 export async function getKeySymTable(){
     const res = await execa(`xmodmap`, [`-pke`]); 
     return res.stdout
 }
 
 //export const parseLine = async (inpline:string): Promise<CachedKey|null>  => {
-export const parseLine = async (inpline:string) => {
+
+const getCode = () => /(\d+)/.exec(line[0])[1];
+/**
+ * parse 'xmodmap -pke' keysym table line
+ * keycode  38 = a A a A
+ */
+export const parseLine = async (inpline: string) => {
 
 //export async function parseLine (inpline:string): Promise<CachedKey|null> {
     // split line output by xmodmap -pke
