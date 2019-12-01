@@ -1,5 +1,10 @@
 nodemon --watch './src/*.*' --ext 'c' --exec './compile.sh' -- './src/xsendkey.c'
 
+nodemon --watch './src/*.*' --ext 'c' --exec '../../scripts/compile.sh' -- './src/xsend.c' './paste'
+
+
+
+./paste 'aaa' 'bbb' 'ccc'
 
 nodemon --watch './src/*.*' --ext 'c' --exec './scripts/compile.sh' -- './src/x-sender/src/example.cpp' './bin/example'
 

@@ -1,4 +1,4 @@
-import { IOHookApp } from './io';
+import { IOHookApp } from './IoHookApp';
 
 import { fromEvent } from 'rxjs';
 import ioHook from 'iohook';
@@ -6,11 +6,13 @@ import { IOHookEvent, IoHookInit, Evt } from '@/types';
 import { loadConfig } from '@/tasks/load-config';
 import {  /*  */pasteText } from '@/tasks/send';
 
+ 
+import { CachedKey } from './CachedKey';
 
-import { CachedKey } from './utils/cached-key';
+import { toLowerCase } from '../utils';
+import { createKeyCodeMap } from '../tasks/load-keycodes';
 
-import { normalizeKey } from './utils/string-utils';
-import { getKeyCodeMap } from './tasks/load-keycodes';
+const normalizeKey = (k: string) => toLowerCase(k);
 
 enum ModifierKeys {
     Alt = 'alt',
@@ -34,7 +36,7 @@ export type Modifiers = {
 const app = {
     ioHook,
 }
-
+/* 
 export const convertToKeyCode = (k: string) => {
     const cachedKey = keycodes.get(normalizeKey(k));
     console.log(`convertToKeyCode`, k, normalizeKey(k), cachedKey)
@@ -49,11 +51,11 @@ export const assignConfKeys = (k: HotkeyConfig) => {
     });
     logger.info(`keycodes`, keycodes)
     //app.ioHook.registerShortcut(keycodes, actions.get(k.command));
-}
+} */
 
 const logger = console;
 const defaultInit: IoHookInit = { logging: false };
-const debug = false;
+
 const keycodes = new Map<string|number, CachedKey>();
 const actions = new Map<string, Function>();
 //const app = new IOHookApp({});
@@ -66,6 +68,10 @@ const onPressed = async <T extends IOHookEvent>(e: T) => {
     logger.info("eee", e);
     await pasteText("test");
 };
+const onPressedDebug = async <T extends IOHookEvent>(e: T) => {
+    
+    logger.info("debug: event", e);
+};test
 
 const registerKeycodes = (c: CachedKey) => {
     logger.info(`cssd`, c);
@@ -81,14 +87,38 @@ const registerKeycodes = (c: CachedKey) => {
  
 
 export async function init({ logging }: IoHookInit = defaultInit) {
-    const keyc = await getKeyCodeMap(keycodes); 
-    //logger.info(`keycdddd`, keyc, keycodes);
-    keyc.forEach(c => registerKeycodes(c));
-    const conf = await loadConfig({});
-    logger.info(`conf`, conf);
-    const confkeys: HotkeyConfig[] = conf.keys;
-    confkeys.forEach(c => assignConfKeys(c));   
+    const keysyms = await createKeyCodeMap();
+    //const conf = await loadConfig({});
+    //logger.info(`conf`, conf);
+    const app = new IOHookApp({
+        debug: true,
+        keymap: keysyms 
+    });
+    app.register(['alt', 'a'], onPressedDebug);
+    app.register(['shift', 'a'], onPressedDebug);
+    app.register(['alt', 'd'], onPressed);
+    app.start();
+    // @ts-ignore
+    //app.register([31, 56], onPressedDebug);
+/*     app.ioHook.registerShortcut([31, 56], onPressedDebug);
+    app.ioHook.registerShortcut([30], onPressedDebug);
+    app.ioHook.on('keypress', onPressedDebug); */
+    return app
 }
+
+export async function init2() {
+
+    
+    const app = {ioHook: ioHook} as any;
+    app.ioHook.registerShortcut([30], onPressedDebug);
+    app.ioHook.on('keypress', onPressedDebug);
+    app.ioHook.on('keydown', onPressedDebug);
+    app.ioHook.on('mouseclick', onPressedDebug);
+
+    return app
+}
+
+ 
 export async function run({ logging }: IoHookInit = defaultInit) {
     //app.configure();
     actions.set('enter', pasteText);

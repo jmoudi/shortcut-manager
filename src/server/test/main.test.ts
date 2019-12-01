@@ -1,14 +1,20 @@
- 
+import { init } from './../src/app/init';
+/*  
 //import {} from '../src';
-import {loadC,consume,getAll,
+import {
+    loadC,
+    consume,
+    getAll,
     tagMatcher, numMatcher, commentMatcher
-} from '../src/tasks/load';
+} from '../src/tasks/load'; */
 import {
-        parseKeys,
-} from '../src/tasks/parse-keys';
-import {
-    loadConfig
-} from '../src/tasks/load-config';
+    loadConfig,
+    getKeyCodeMap,
+    createKeyCodeMap
+} from '../src/tasks';
+import { default as ioHook } from 'iohook';
+
+import { IOHookApp } from '../src/app/IoHookApp';
 
 
 const log = console.log
@@ -19,6 +25,37 @@ afterAll(async (done) => {
 });
 
 
+describe.only('app', () => {
+    test('app', async () => {
+        const km = await createKeyCodeMap();
+        const app = new IOHookApp({keymap: km });
+        app.register(['alt', 'c'], () => console.log(`tttest`));
+        const res = app
+        //log('', res);
+        expect(res).toBeDefined();
+        
+    });
+    test('app', async () => {
+
+        const app = await init();
+        app.register(['shift', 'c'], () => console.log(`tttest`));
+        const res = app
+        //log('', res);
+        expect(res).toBeDefined();
+        
+    });
+    test.only('app', async () => {
+
+        const app = ioHook;
+        app.registerShortcut([30], () => console.log(`tttest`));
+        app.registerShortcut([38], () => console.log(`tttest`));
+
+        const res = app
+        //log('', res);
+        expect(res).toBeDefined();
+        
+    });
+});
 
 describe('', () => {
 /*     test('test1', async () => {
@@ -27,13 +64,24 @@ describe('', () => {
         expect(res).toBeDefined();
         
     }); */
-    test.only('test22', async () => {
+    
+    test('getKeyCodeMap', async () => {
+        const res = await createKeyCodeMap();
+        //console.table(res);
+        for (const [k,v] of res.keys.entries()){
+            log('', k, v);
+        }
+        
+        expect(res).toBeDefined();
+        
+    }); 
+    test('config', async () => {
         const res = await loadConfig({});
         log('res', res);
         expect(res).toBeDefined();
         
     }); 
-    test('test1', async () => {
+/*     test('test1', async () => {
         const res = await parseKeys();
         log('res', res);
         expect(res).toBeDefined();
@@ -48,5 +96,5 @@ describe('', () => {
         //log('', res);
         expect(res).toBeDefined();
         
-    });
+    }); */
 });

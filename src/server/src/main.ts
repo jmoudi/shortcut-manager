@@ -1,9 +1,11 @@
-import { run } from './init';
+import { init,init2 } from '@/app/init';
 async function main(){
     //console.clear()
     console.log(`aaaaa`);
-    const res = await run();
-    console.log(`res`,  res);
+    const res = await init();
+
+    // @ts-ignore
+    console.log(`active:`,  res.ioHook.active, res.ioHook.shortcuts);
     return res;
 }
 

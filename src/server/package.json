@@ -7,7 +7,7 @@
 		"compile": "tsc -b -i --listEmittedFiles -w",
 		"compile:nw": "tsc -b -i --listEmittedFiles",
 		"run:test": "ts-node-dev --transpileOnly --respawn --prefer-ts -r '/home/jm/Projects/Modules/ts/node/resolve-paths/src/loadpaths.ts' ./src/main.ts",
-		"run": "ts-node -r '/home/jm/Projects/Modules/ts/node/resolve-paths/src/loadpaths.ts' ./src/main.ts",
+		"run": "ts-node --prefer-ts-exts --transpile-only -r '/home/jm/Projects/Modules/ts/node/resolve-paths/src/loadpaths.ts' ./src/main.ts",
 		"show-configs": "tsc --showConfig && echo \n=======\n && jest --showConfig"
 	},
 	"dependencies": {

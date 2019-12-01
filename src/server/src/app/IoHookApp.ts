@@ -1,29 +1,70 @@
 
 import { default as ioHook } from 'iohook';
-import { IOHook, IoHookInit, IOHookEvent, KeyEventDetails } from './types';
-import {conformsTo} from '@std/fp'
-import { normalizeKey } from './utils/string-utils';
+import { IOHook, IoHookInit, IOHookEvent, KeyEventDetails } from '../types';
+import {conformsTo,reduce} from '@std/fp'
+import { KeyCodeMap } from '@/app/KeyCodeMap';
 
 
-export interface IOHookOptions{
-  rawCode: boolean;
-  disableClickPropagation: boolean;
+
+interface Shortcut {
+  id: number;
+  callback: Function;
+  releaseCallback?: Function;
+}
+interface IOHookStatus {
+  active: boolean;
+  shortcuts: Shortcut[]
+}
+export interface IOHookAppConfig{
+  rawCode?: boolean;
+  disableClickPropagation?: boolean;
+  debug?: boolean;
+  keymap?: KeyCodeMap;
 }
 export class IOHookApp {
   ioHook: IOHook
-  //keymap: KeyMap;
+  keymap: KeyCodeMap;
+  config: IOHookAppConfig;
   //hotkeys: HotkeyRegistry;
-  constructor(keymap?: IOConfig){
+  constructor(config?: Partial<IOHookAppConfig>){
     //this.keymap = keymap;
     this.init();
+    this.setConfig(config);
+    this.keymap = config.keymap;
+    
   }
   init(){
     this.ioHook = ioHook;
   }
-  configure(opts: Partial<IOHookOptions>){
+  setConfig(config: Partial<IOHookAppConfig> = {}){
+    this.config = {debug: false};
+  }
+  configure(opts: Partial<IOHookAppConfig>){
     this.ioHook.useRawcode(true);
     this.ioHook.disableClickPropagation();
     //ioHook.setDebug(true); // Uncomment this line for see all debug information from iohook
+  }
+
+  register(keys: string[], action: Action){
+    if (!this.keymap){
+      throw 'no keymap'
+    }
+    const reduceToCodes = (codes: number[], k: string) => {
+      const al = this.keymap.getAlias(k);
+      if (al){ 
+        // '- 8' due to ioHook having wrong keysyms
+        codes.push(al.code - 8); 
+      }
+      return codes
+    }
+    const convertedCodes = reduce(keys, reduceToCodes, []);
+    const id = this.ioHook.registerShortcut(convertedCodes, action);
+    return id;
+    //console.log(keys, convertedCodes, status)
+  }
+
+  start(){
+    this.ioHook.start(this.config.debug);
   }
 /*
   bindAll(keys: Hotkey[]){
