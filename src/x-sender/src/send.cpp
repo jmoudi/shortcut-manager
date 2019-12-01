@@ -1,13 +1,13 @@
- 
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+#include <iostream>
+#include <memory>
+#include <string>
+#include <vector>
 #include <X11/Xlib.h>
 #include <X11/keysym.h> 
 
 static char    *progname       = NULL;
-static char    *displayname    = NULL;
+//char    *displayname    = NULL;
+std::string displayname = "";
 static Window   window         = 0;
 static Display *display        = NULL;
 static char     keyname[1024];
@@ -48,8 +48,8 @@ XKeyEvent createEvent(){
 }
 void SendKeyPressedEvent(KeySym keysym, unsigned int shift)
 {
-    //XKeyEvent event = createEvent();
-    XKeyEvent		event;
+    XKeyEvent event = createEvent();
+  /*   XKeyEvent		event;
     event.display	= display;
     event.window	= window;
     event.root		= RootWindow(display, 0); // XXX nonzero screens?
@@ -61,7 +61,7 @@ void SendKeyPressedEvent(KeySym keysym, unsigned int shift)
     event.y_root	= 1;
     event.same_screen	= True;
     event.type		= KeyPress;
-    event.state		= 0;  
+    event.state		= 0;  */ 
 
     //
     // press down shift keys one at a time...
@@ -133,15 +133,39 @@ int	main(int argc, char **argv)
 {
     keysym = 0;
     shift  = 0;
+    char *argval = NULL;
     int Junk;
-    if(displayname == NULL){
+    //int ii;
+  /*   for (ii=1; ii<argc; ii++) {
+        argval = argv[ii];
+        printf("argv %s", ii);
+        printf("argv %d", argv[ii]);
+        printf("argval %d", argval);
+        
+    }  
+    for (int i = 0; i < argc; i++) {
+        //argval = argv[i];
+        printf("argv %s", i);
+        printf("argv %d", argv[i]);
+        //printf("argval %d", argval);
+        
+    }  */
+    std::cout << "Have " << argc << " arguments:" << std::endl;
+    for (int i = 0; i < argc; ++i) {
+        std::cout << argv[i] << std::endl;
+    }
+    //printf()
+ 
+
+/*     if(displayname == NULL){
 	    displayname = getenv("DISPLAY");
     }
 
     if(displayname == NULL){
 	    displayname = ":0.0";
-    }
-    display = XOpenDisplay(displayname);
+    } */
+
+    display = XOpenDisplay(NULL);
 
     if(window == 0){
         XGetInputFocus(display, &window, &Junk);
@@ -152,11 +176,7 @@ int	main(int argc, char **argv)
 
     shift |= ControlMask;
     keysym = XK_V;
-/*     int ii;
-    for(ii=1; ii<argc; ii++) {
-        printf("argv %s", ii);
-        printf("argv %d", argv[ii]);
-    } */
+/*      */
 
     //printf("argv %d", argv[2]);
     printf("keysym %d", keysym);
