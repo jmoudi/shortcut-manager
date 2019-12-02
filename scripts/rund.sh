@@ -2,6 +2,7 @@
 
 echo "Reloading daemon at: $(date +"%H:%M:%S-%N")";
 
+#--nodaemon
 function start(){
     echo "Runnng with Args: $@";
     #killall -v -HUP 'xbindkeys'

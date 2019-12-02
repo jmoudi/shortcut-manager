@@ -17,15 +17,16 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 
-#include "lib/xsel/xsel.h"
-
+//#include "../lib/xsel/xsel.c"
+//#include "../lib/xsel/xsel.h"
+#include "./xsel-utils.c"
 
 
 /* The name we were invoked as(argv[0]) */
 static char * progname;
 
 /* Verbosity level for debugging */
-static int debug_level = DEBUG_LEVEL;
+//static int debug_level = DEBUG_LEVEL;
 
 /* Our X Display and Window */
 static Display * display;
@@ -56,28 +57,32 @@ static Atom compound_text_atom; /* The COMPOUND_TEXT atom */
 static int NUM_TARGETS;
 static Atom supported_targets[MAX_NUM_TARGETS];
 
+
+
 /* do_zeroflush: Use only last zero-separated part of input.
  * All previous parts are discarded */
-static Bool do_zeroflush = False;
+//static Bool do_zeroflush = False;
 
 /* do_follow: Follow mode for output */
-static Bool do_follow = False;
+//static Bool do_follow = False;
 
 /* nodaemon: Disable daemon mode if True. */
-static Bool no_daemon = False;
+//static Bool no_daemon = False;
 
 /* logfile: name of file to log error messages to when detached */
-static char logfile[MAXFNAME];
+//static char logfile[MAXFNAME];
 
 /* fstat() on stdin and stdout */
-static struct stat in_statbuf, out_statbuf;
+/* static struct stat in_statbuf, out_statbuf;
 
 static int total_input = 0;
 static int current_alloc = 0;
 
-static long timeout = 0;
+static long timeout = 0; 
+*/
 static struct itimerval timer;
 static struct itimerval zerot;
+ 
 
 #define USEC_PER_SEC 1000000
 
@@ -130,7 +135,7 @@ main(int argc, char *argv[])
 
 
 
-#define OPT(s)(strcmp(argv[i],(s)) == 0)
+/* #define OPT(s)(strcmp(argv[i],(s)) == 0)
  
     if (OPT("--input") || OPT("-i")) {
       force_input = True;
@@ -142,11 +147,16 @@ main(int argc, char *argv[])
       do_input = False;
       force_output = True;
     } 
-    
+     */
+    force_input = True;
+    do_output = False;
     want_clipboard = True;
     timeout_ms = 10;
     //if (OPT("--nodetach") || OPT("-n")) {
     no_daemon = True;
+      timeout = timeout_ms * 1000;
+
+    display = XOpenDisplay(display_name);
       //do_exchange = True;
         //if (OPT("--display")) {
       //display_name = argv[i];
@@ -160,12 +170,10 @@ main(int argc, char *argv[])
     //} else if (OPT("--logfile") || OPT("-l")) {
       //i++; if (i >= argc) goto usage_err;
       //_xs_strncpy(logfile, argv[i], MAXFNAME);
-  }
+ 
  
 
-  timeout = timeout_ms * 1000;
 
-  display = XOpenDisplay(display_name);
   if (display==NULL) {
     exit_err("Can't open display: %s\n",
               display_name ? display_name : "(null)");
@@ -192,11 +200,11 @@ main(int argc, char *argv[])
 
   /* Consistency check */
   test_atom = XInternAtom(display, "PRIMARY", False);
-  if (test_atom != XA_PRIMARY)
-    print_debug(D_WARN, "XA_PRIMARY not named \"PRIMARY\"\n");
+  if (test_atom != XA_PRIMARY){
+    print_debug(D_WARN, "XA_PRIMARY not named \"PRIMARY\"\n");}
   test_atom = XInternAtom(display, "SECONDARY", False);
-  if (test_atom != XA_SECONDARY)
-    print_debug(D_WARN, "XA_SECONDARY not named \"SECONDARY\"\n");
+  if (test_atom != XA_SECONDARY){
+    print_debug(D_WARN, "XA_SECONDARY not named \"SECONDARY\"\n");}
 
   NUM_TARGETS=0;
 

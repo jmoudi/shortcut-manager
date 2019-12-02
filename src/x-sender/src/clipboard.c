@@ -16,7 +16,7 @@
 #include <X11/Xlib.h>
 #include <X11/Xatom.h>
 
-#include "lib/xsel/xsel.h"
+#include "../lib/xsel/xsel.h"
 
 Bool show_version = False;
 Bool show_help = False;
@@ -36,20 +36,20 @@ const char * display_name = NULL;
 long timeout_ms = 0L;
 
 
-void aa(){
+void doInput(Atom selection){
     old_sel = get_selection_text(selection);
     if (old_sel){
          printf("%s", old_sel);
-         if (!do_append && *old_sel != '\0' && isatty(1) &&
-             old_sel[xs_strlen(old_sel) - 1] != '\n')
-           {
+         if (*old_sel != '\0' && old_sel[xs_strlen(old_sel) - 1] != '\n'){
+// is termnal
+ //&& isatty(1) 
              fflush(stdout);
              fprintf(stderr, "\n\\ No newline at end of selection\n");
            }
       }
 }
 
-void outp(Atom selection){
+void doOutput(Atom selection){
     if (do_output || force_output) fflush(stdout);
     if (do_append) {
       if (!old_sel){
@@ -58,12 +58,14 @@ void outp(Atom selection){
       new_sel = copy_sel(old_sel);
     }
     new_sel = initialise_read(new_sel);
+    new_sel = read_input(new_sel, False);
+    set_selection__daemon(selection, new_sel);
 }
 
-int
-main(int argc, char *argv[]){
+int main(int argc, char *argv[]){
 
     display = XOpenDisplay(display_name);
     selection = XInternAtom(display, "CLIPBOARD", False);
+    doInput(selection);
 
 }

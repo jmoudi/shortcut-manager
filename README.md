@@ -19,6 +19,7 @@ go run ./main.go
 
 chmod +x
 nodemon --watch './src/x-sender/**/*.*' --ext 'c' --exec './scripts/compile.sh' -- './src/x-sender/src/xsend.c' "./bin/paste"
+    killall -HUP xbindkeys
 
 ./scripts/rund.sh "./src/config/x1.scm"
 ./scripts/rund.sh "./src/config/x1.scm"
