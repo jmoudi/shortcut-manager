@@ -1,0 +1,13 @@
+keee:
+    c: &we []
+    s: &st []
+email:
+    jmv: &jmvumx "jmvumx@gmail.com"
+    aaa: *c
+keys:
+    - { key: [alt_L, a], command: enter, 
+        args: [test, test2] }
+    - { key: [Alt_L, x], command: enter, 
+        args: [testss, test2] }
+    - { key: [alt, c], command: enter, 
+        args: [aaa, 1111] }
