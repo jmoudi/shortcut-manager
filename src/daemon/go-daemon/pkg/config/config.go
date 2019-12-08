@@ -16,13 +16,14 @@ type T struct {
 }
 
 
-// ReadKeyConfig
-func ReadKeyConfig(filePath string) (T) {
+// ReadKeybindings
+func ReadKeybindings(filePath string) (T) {
 	t := T{}
 	b, err := ioutil.ReadFile(filePath)
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Print(string(b))
 	err = yaml.Unmarshal(b, &t)
 	if err != nil {
 		log.Fatal(err)

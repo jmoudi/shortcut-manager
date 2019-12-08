@@ -1,0 +1,8 @@
+version: 1
+keybindings:
+    - { key: [alt, a], command: enter, 
+        args: [aaa, 111] }
+    - { key: [shift, c], command: enter, 
+        args: [ccc, 111] }
+    - { key: [shift, d], command: enter, 
+        args: [ddd, 111, 222, jjjj] }

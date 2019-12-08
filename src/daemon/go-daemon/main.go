@@ -1,7 +1,8 @@
 package main
 
 import (
-	"godaemon/cmd/run"
+	"log"
+	"godaemon/pkg/keylistener"
 )
 
 // Example simple-keybinding shows how to grab keys on the root window and
@@ -10,5 +11,6 @@ import (
 // Note that more documentation can be found in the keybind package.
 
 func main() {
-	run.Run()
+	//keylistener.DoRun()
 }
+
