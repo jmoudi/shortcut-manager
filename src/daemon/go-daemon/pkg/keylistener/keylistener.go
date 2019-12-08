@@ -46,7 +46,7 @@ func parse(xu *xgbutil.XUtil, keyStr string) ([]xproto.Keycode) {
 func HandleKeyPress(X *xgbutil.XUtil, e xevent.KeyPressEvent) {
 	log.Println("Key press!")
 	log.Print(e, "\n")
-	
+	fmt.Print(e, "================\n")
 	//parse(X, e)
 	// keybind.LookupString does the magic of implementing parts of
 	// the X Keyboard Encoding to determine an english representation
@@ -70,15 +70,69 @@ func HandleKeyPress(X *xgbutil.XUtil, e xevent.KeyPressEvent) {
 	}
 }
 
+
+
+// HandleKeyPress aaa
+func HandleKeyPress2(m CmdMap, X *xgbutil.XUtil, e xevent.KeyPressEvent) {
+	log.Println("Key press!")
+	log.Print(e, "\n")
+	
+}
+type ActionFunc func(keyStr string)
+type Cmd struct {
+	name string
+	action ActionFunc
+}
+type CmdMap map[string]Cmd
+
 type KeyPressHandler func(X *xgbutil.XUtil, e xevent.KeyPressEvent)
 type BKeyMap map[string]KeyPressHandler
 func (m BKeyMap) Add(k string, cb KeyPressHandler) BKeyMap {
 	m[k] = cb
 	return m
 }
-// DoRun dorun
-func DoRun() int {
-	keymap := BKeyMap{
+func tt(s string){
+	log.Print("PRESSED: ", s)
+}
+func bindMap() (m CmdMap){
+	keymap := CmdMap{
+		//map2 := map[string]func(X *xgbutil.XUtil, e xevent.KeyPressEvent){ 
+			"shift-C": Cmd{
+				name: "shift+C",
+				action: tt,
+			},
+			"shift-D": Cmd{
+				name: "shift+D",
+				action: tt,
+			},
+	}
+	return keymap
+}
+
+func (m CmdMap) lookup(cmdStr string){
+		a, ok := m[cmdStr]
+		//fmt.Printf("key[%s] value[%s]\n", k, v, a)
+		log.Print("cmdStr: ", cmdStr)
+		log.Print("cmd: ", ok, a)
+/* 		if a {
+			log.Print("cmd: ", ok, a)
+		} */
+	
+}
+
+func (m CmdMap) bindAll(cmdStr string){
+	for k, v := range m { 
+		a, ok := m[k]
+		//fmt.Printf("key[%s] value[%s]\n", k, v, a)
+		log.Print("key: ", k, "val: ", v)
+		log.Print("cmd: ", ok, a)
+/* 		if a {
+			log.Print("cmd: ", ok, a)
+		} */
+	}
+}
+
+/* eymap := BKeyMap{
 	//map2 := map[string]func(X *xgbutil.XUtil, e xevent.KeyPressEvent){ 
       
 		"shift-D": HandleKeyPress, 
@@ -86,7 +140,11 @@ func DoRun() int {
 	}
 	aa := keymap.Add("shift-A", HandleKeyPress)
 	fmt.Print("aa", aa)
-	fmt.Println("Map-2: ", keymap) 
+	fmt.Println("Map-2: ", keymap)  */
+
+// DoRun dorun
+func DoRun() int {
+	cmdmap := bindMap()
 /* 	m := make(map[string]func)
 	m["Control-v"]
 	fmt.Println(sammy["animal"]) */
@@ -102,16 +160,22 @@ func DoRun() int {
 	// run-time. (Assuming you're using the xevent package's event loop.)
 	keybind.Initialize(X)
 
+	
 	// Before attaching callbacks, wrap them in a callback function type.
 	// The keybind package exposes two such callback types: keybind.KeyPressFun
 	// and keybind.KeyReleaseFun.
-	cb1 := keybind.KeyPressFun(HandleKeyPress)
-/* 		func(X *xgbutil.XUtil, e xevent.KeyPressEvent) {
+	//cb1 := keybind.KeyPressFun(HandleKeyPress)
+	cb1 := keybind.KeyPressFun(
+ 		func(X *xgbutil.XUtil, e xevent.KeyPressEvent) {
 			log.Println("Key press!")
 			log.Print(e)
-			log.Print(e.String(), "\n", e.Detail, "\n", e.SequenceId())
-			log.Print(e)
-		}) */
+			
+			keyStr := keybind.LookupString(X, e.State, e.Detail)
+			log.Print("keyStr", keyStr)
+			cmdmap.lookup(keyStr)
+		}) 
+	err = cb1.Connect(X, X.RootWin(), "shift-c", true)
+
 		// We can now attach the callback to a particular window and key
 		// combination. This particular example grabs a key on the root window,
 		// which makes it a global keybinding.
@@ -120,14 +184,18 @@ func DoRun() int {
 		// N.B. This approach works by issuing a passive grab on the window
 		// specified. To respond to Key{Press,Release} events without a grab, use
 		// the xevent.Key{Press,Release}Fun callback function types instead.
-	err = cb1.Connect(X, X.RootWin(), "Mod4-j", true)
+/* 	err = cb1.Connect(X, X.RootWin(), "Mod4-j", true)
 
 	err = cb1.Connect(X, X.RootWin(), "Mod2-f", true)
 	err = cb1.Connect(X, X.RootWin(), "Alt-c", true)
 	err = cb1.Connect(X, X.RootWin(), "Control-v", true)
 	err = cb1.Connect(X, X.RootWin(), "shift-c", true)
+	err = cb1.Connect(X, X.RootWin(), "shift-d", true)
 	//mod1 = alt
-	err = cb1.Connect(X, X.RootWin(), "Mod1-a", true)
+	err = cb1.Connect(X, X.RootWin(), "Mod1-a", true) */
+
+
+
 	// A keybinding can fail if the key string could not be parsed, or if you're
 	// trying to bind a key that has already been grabbed by another client.
 	if err != nil {
