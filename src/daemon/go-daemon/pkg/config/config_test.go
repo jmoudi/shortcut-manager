@@ -17,10 +17,11 @@ var _ = Describe("Config", func() {
 
 func TestReadKeybindings(t *testing.T) {
 	const (
-		file = "/home/jm/Projects/Apps/hotkey-manager/src/config/test.yml"
+		file = "../../keybindings.yml"
+		test2 = "../../test.yml"
 		file2 = "file:///home/jm/Projects/Apps/hotkey-manager/src/config/test.yml"
 	)
 	conf := config.ReadKeybindings(file)
-	log.Print(conf)
+	log.Print("CONF=========:\n", conf)
  	//keylistener.DoRun()
 }

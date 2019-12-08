@@ -13,4 +13,5 @@ require (
 	github.com/onsi/gomega v1.7.1
 	golang.org/x/sys v0.0.0-20191206220618-eeba5f6aabab // indirect
 	golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 // indirect
+	gopkg.in/yaml.v2 v2.2.4
 )
