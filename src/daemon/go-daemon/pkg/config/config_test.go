@@ -1,9 +1,11 @@
 package config_test
 
 import (
+	"log"
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
 	"testing"
+	"godaemon/pkg/config"
 )
 
 var _ = Describe("Config", func() {
@@ -18,8 +20,7 @@ func TestReadKeybindings(t *testing.T) {
 		file = "/home/jm/Projects/Apps/hotkey-manager/src/config/test.yml"
 		file2 = "file:///home/jm/Projects/Apps/hotkey-manager/src/config/test.yml"
 	)
-	conf := ReadKeybindings(file)
+	conf := config.ReadKeybindings(file)
 	log.Print(conf)
-	fmt.Print(conf)
-	//keylistener.DoRun()
+ 	//keylistener.DoRun()
 }
