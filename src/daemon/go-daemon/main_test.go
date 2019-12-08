@@ -1,7 +1,7 @@
 package main
 
 import (
-	"godaemon/src/keylistener"
+	"godaemon/pkg/keylistener"
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
@@ -10,7 +10,7 @@ import (
 var _ = Describe("Main", func() {
 	d := keylistener.DoRun()
 	Context("keylistener", func() {
-		It("should be a novel", func() {
+		It("should start", func() {
 			Expect(d).To(Equal(1))
 		})
 	})

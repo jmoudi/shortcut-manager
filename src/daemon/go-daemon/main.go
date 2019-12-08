@@ -1,6 +1,6 @@
 package main
 
-import "godaemon/src/keylistener"
+import "godaemon/pkg/keylistener"
 
 // Example simple-keybinding shows how to grab keys on the root window and
 // respond to them via callback functions. It also shows how to remove such
