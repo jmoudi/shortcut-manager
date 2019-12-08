@@ -1,4 +1,4 @@
-package keylistener
+package config
 
 import (
 	//"fmt"
