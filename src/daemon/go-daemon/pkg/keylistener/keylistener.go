@@ -12,13 +12,9 @@ import (
 	"github.com/BurntSushi/xgbutil"
 	"github.com/BurntSushi/xgbutil/keybind"
 	"github.com/BurntSushi/xgbutil/xevent"
+ 
 )
-
-
-
-
-
-
+ 
 
 // DoRun dorun
 func parse(xu *xgbutil.XUtil, keyStr string) ([]xproto.Keycode) {
