@@ -14,3 +14,9 @@ KeyPress event, serial 25, synthetic NO, window 0xac00001,
     XLookupString gives 0 bytes: 
     XmbLookupString gives 0 bytes: 
     XFilterEvent returns: False
+
+
+Shift
+control
+// DOESNT WORK
+Ctrl
