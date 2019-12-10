@@ -74,19 +74,6 @@ func HandleKeyPress2(m CmdMap, X *xgbutil.XUtil, e xevent.KeyPressEvent) {
 	log.Print(e, "\n")
 	
 }
-type ActionFunc func(keyStr string)
-type Cmd struct {
-	name string
-	action ActionFunc
-}
-type CmdMap map[string]Cmd
-
-type KeyPressHandler func(X *xgbutil.XUtil, e xevent.KeyPressEvent)
-type BKeyMap map[string]KeyPressHandler
-func (m BKeyMap) Add(k string, cb KeyPressHandler) BKeyMap {
-	m[k] = cb
-	return m
-}
 func tt(s string){
 	log.Print("PRESSED: ", s)
 }
@@ -140,6 +127,8 @@ func (m CmdMap) bindAll(cmdStr string){
 
 // DoRun dorun
 func DoRun() int {
+	am := ActionMap.New()
+	am.Add()
 	cmdmap := bindMap()
 /* 	m := make(map[string]func)
 	m["Control-v"]

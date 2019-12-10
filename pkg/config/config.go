@@ -31,9 +31,9 @@ type KeybindingsConfig struct   {
 	Keybindings []Keybinding `yaml:"keybindings"`
 }
 
-/* func (k KeybindingsConfig) GetAll() int {
+ func (k KeybindingsConfig) GetAll() int {
 	
-	for k, v := range k { 
+	for i,v := range k.Keybindings { 
 		//a, ok := m[k]
 		//fmt.Printf("key[%s] value[%s]\n", k, v, a)
 		log.Print("key: ", k, "val: ", v)
@@ -58,6 +58,8 @@ func ReadKeybindings(filePath string) (interface{}) {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	for
 	//c := t.GetAll()
 	return t
 }

@@ -1,3 +1,9 @@
-﻿
+examples
+lib
+.idea.md
+*.o
 .notes
-test
+conf.yml
+__ignored__
+externals
+dist

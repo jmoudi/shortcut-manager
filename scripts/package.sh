@@ -9,11 +9,12 @@ OSes[0]='linux;x86_64-linux-gnu-gcc'
 OSes[1]='windows;x86_64-w64-mingw32-gcc'
 mkdir -p dist
 
+olddata="./olddata"
 for i in "${OSes[@]}"; do
 	arr=(${i//;/ })
 	os=${arr[0]}
 	cc=${arr[1]}
-	rm -f nyaa nyaa.exe
+	#rm -f olddata
 	echo -e "\nBuilding $os..."
 	echo GOOS=$os GOARCH=amd64 CC=$cc CGO_ENABLED=1 GO111MODULE=on go build -v -ldflags="-X main.buildversion=`git rev-parse HEAD`"
 	GOOS=$os GOARCH=amd64 CC=$cc CGO_ENABLED=1 GO111MODULE=on go build -v -ldflags="-X main.buildversion=$(git rev-parse HEAD)"
